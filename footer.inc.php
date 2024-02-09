@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="Script\footer.js">
-    <script src="Style\footer.css"></script>
+    <link rel="stylesheet" href="Style\footer.css">
+    <script src="Script\footer.js"></script>
 </head>
 <body>
 <?php include 'header.inc.php'; ?>   
