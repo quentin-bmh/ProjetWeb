@@ -7,6 +7,7 @@ body{
     background-color: rgb(135, 171, 203);
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 999;
 }
 
 li {
@@ -15,9 +16,11 @@ li {
 
 a,
 a:visited {
+    position: relative;
     color: darkslategrey;
     text-decoration: none;
     text-transform: uppercase;
+    z-index: 999;
 }
 
 a:hover {
@@ -27,18 +30,22 @@ a:hover {
 /**** NAVBAR ****/
 
 nav {
+    position: relative;
     background: skyblue;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
     font-size: calc(0.5rem + 1.5vw);
+    z-index: 999;
 }
 
 nav ul {
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 60%;
+    z-index: 999;
 }
 
 #icons {
@@ -46,7 +53,7 @@ nav ul {
     display: none;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
     #icons {
         display: block;
     }
@@ -80,5 +87,9 @@ nav ul {
 
     nav.active ul {
         left: 0;
+    }
+
+    .barre{
+        display: none;
     }
 }

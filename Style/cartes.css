@@ -39,7 +39,7 @@ body {
 }
 
 #s1:hover {
-    z-index: 1;
+    z-index: 0;
     display: flex;
     flex-direction: row;
     background: rgb(94, 156, 248,0.8);
@@ -47,7 +47,7 @@ body {
 }
 
 #s2:hover {
-    z-index: 1;
+    z-index: 0;
     display: flex;
     flex-direction: row;
     background: rgba(203, 138, 138, 0.8);
@@ -55,7 +55,7 @@ body {
 }
 
 #s3:hover {
-    z-index: 1;
+    z-index: 0;
     display: flex;
     flex-direction: row;
     background: rgb(75, 163, 17,0.8);

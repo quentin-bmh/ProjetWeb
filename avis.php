@@ -8,7 +8,7 @@
     <script src="Script\avis.js"></script>
 </head>
 <body>
-<?php include 'header.inc.php'; ?>
-    
+    <?php include 'header.inc.php'; ?>
+    <?php include 'footer.inc.php'; ?>
 </body>
 </html>

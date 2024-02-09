@@ -8,7 +8,8 @@
     <script src="Script\footer.js"></script>
 </head>
 <body>
-<?php include 'header.inc.php'; ?>   
-
+    <footer>
+        <p>&copy; 2024 Montoulieu & co. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
