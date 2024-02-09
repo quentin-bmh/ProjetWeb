@@ -8,6 +8,7 @@
     <script src="Script\clic-and-collect.js"></script>
 </head>
 <body>
+<?php include 'header.inc.php'; ?>
     
 </body>
 </html>

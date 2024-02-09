@@ -8,6 +8,7 @@
     <script src="Style\footer.css"></script>
 </head>
 <body>
-    
+<?php include 'header.inc.php'; ?>   
+
 </body>
 </html>

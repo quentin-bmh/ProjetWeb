@@ -8,19 +8,7 @@
     <script src="Script\acceuil.js"></script>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="menu-toggle" onclick="toggleMenu()"></div>
-            <nav class="menu">
-                <ul>
-                    <li><a href="avis.php">Avis</a></li>
-                    <li><a href="cartes.php">Cartes</a></li>
-                    <li><a href="reservation.php">Réservation</a></li>
-                    <li><a href="clic-n-collect.php">Clic & Collect</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include 'header.inc.php'; ?>
    
     <footer>
         <p>&copy; 2024 Montoulieu & co. Tous droits réservés.</p>

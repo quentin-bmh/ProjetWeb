@@ -8,6 +8,7 @@
     <script src="Script\reservations.js"></script>
 </head>
 <body>
+<?php include 'header.inc.php'; ?>
 <div class="css-1t8l2ta">
     <label for="languageSelector" class="css-1kff492 e1t160053">
         <div class="e1t160050 css-j82l06-container">
