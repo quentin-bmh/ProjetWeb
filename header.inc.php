@@ -10,13 +10,18 @@
 <body>
 <div class="navbar">
     <div class="menu-toggle" onclick="toggleMenu()"></div>
-        <nav class="menu">
+        <nav id="nav" class="active">
             <ul>
-                <li><a href="avis.php">Avis</a></li>
-                <li><a href="carte.php">Cartes</a></li>
-                <li><a href="reservation.php">Réservation</a></li>
-                <li><a href="clic-and-collect.php">Clic & Collect</a></li>
+                <li>
+                    <a href="avis.php">Avis</a></li>
+                <li>
+                    <a href="carte.php">Cartes</a></li>
+                <li>
+                    <a href="reservation.php">Réservation</a></li>
+                <li>
+                    <a href="clic-and-collect.php">Clic & Collect</a></li>
             </ul>
+            <div id="icons"></div>
         </nav>
     </div>
 </body>

@@ -1,73 +1,84 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+* {
     padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", serif;
+}
+body{
+    background-color: rgb(135, 171, 203);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-footer {
-    margin-top: auto;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+li {
+    list-style: none;
 }
 
-.navbar {
-    background-color: #ff0000;
-    padding: 10px 20px;
+a,
+a:visited {
+    color: darkslategrey;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
-.menu-toggle {
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
+a:hover {
+    color: white;
+}
+
+/**** NAVBAR ****/
+
+nav {
+    background: skyblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    font-size: calc(0.5rem + 1.5vw);
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+#icons {
     cursor: pointer;
-}
-
-.menu-toggle::before,
-.menu-toggle::after {
-    content: '';
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: #000;
-    margin: 5px 0;
-}
-
-.menu {
     display: none;
 }
 
-.menu.active {
-    display: block;
-}
-
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu ul li {
-    padding: 10px 0;
-}
-
-.menu ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Media query for mobile */
-@media screen and (max-width: 768px) {
-    .menu {
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: #ff0000;
+@media (max-width: 650px) {
+    #icons {
+        display: block;
     }
 
-    .menu ul li {
-        border-bottom: 1px solid #fff;
+    #icon:before {
+        content: "\2630";
+    }
+
+    .active #icons:before {
+        content: "\2715";
+    }
+
+    nav ul {
+        position: fixed;
+        left: -100%;
+        top: 5%;
+        flex-direction: column;
+        background: skyblue;
+        width: 100%;
+        text-align: center;
+        transition: 0.25s;
+    }
+
+    nav li {
+        padding: 3px 0;
+    }
+
+    nav li:hover {
+        background: #08b4bb;
+    }
+
+    nav.active ul {
+        left: 0;
     }
 }
