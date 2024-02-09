@@ -8,10 +8,16 @@
     <script src="Script\cartes.js"></script>
 </head>
 <body>
-<div class="container">
-        <div class="section" id="s1"></div>
-        <div class="section" id="s2"></div>
-        <div class="section" id="s3"></div>
+    <div class="container">
+        <div class="section" id="s1">
+            <img src="Image\entree.jpg" alt="" style="width: auto; height: auto;">
+        </div>
+        <div class="section" id="s2">
+            <img src="Image\plat.jpg" alt="" style="width: auto; height: auto;">
+        </div>
+        <div class="section" id="s3">
+            <img src="Image\dessert.jpg" alt="" style="width: auto; height: auto;">
+        </div>
     </div>
 </body>
 </html>

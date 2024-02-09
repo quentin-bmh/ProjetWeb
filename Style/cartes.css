@@ -9,34 +9,55 @@ body {
 }
 
 #s1 {
-    flex: 1;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
     background: rgb(94, 156, 248);
+    transition: 
+    background 0.5s,
+    transform 0.5s;
 }
 
 #s2 {
-    flex: 1;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
     background: rgba(203, 138, 138, 1);
+    transition:
+    background 0.5s,
+    transform 0.5s;
 }
 
 #s3 {
-    flex: 1;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
     background: rgb(75, 163, 17);
+    transition:
+    background 0.5s,
+    transform 0.5s;
 }
 
 #s1:hover {
-    flex: 1;
-    background: rgb(94, 156, 248,0.5);
-    transform: scale(1.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    background: rgb(94, 156, 248,0.8);
+    transform: scale(1.06);
 }
 
 #s2:hover {
-    flex: 1;
-    background: rgba(203, 138, 138, 0.5);
-    transform: scale(1.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    background: rgba(203, 138, 138, 0.8);
+    transform: scale(1.06);
 }
 
 #s3:hover {
-    flex: 1;
-    background: rgb(75, 163, 17,0.5);
-    transform: scale(1.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    background: rgb(75, 163, 17,0.8);
+    transform: scale(1.06);
 }
