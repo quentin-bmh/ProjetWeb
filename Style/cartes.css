@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+#s1 {
+    flex: 1;
+    background: rgb(94, 156, 248);
+}
+
+#s2 {
+    flex: 1;
+    background: rgba(203, 138, 138, 1);
+}
+
+#s3 {
+    flex: 1;
+    background: rgb(75, 163, 17);
+}
+
+#s1:hover {
+    flex: 1;
+    background: rgb(94, 156, 248,0.5);
+    transform: scale(1.2);
+}
+
+#s2:hover {
+    flex: 1;
+    background: rgba(203, 138, 138, 0.5);
+    transform: scale(1.2);
+}
+
+#s3:hover {
+    flex: 1;
+    background: rgb(75, 163, 17,0.5);
+    transform: scale(1.2);
+}
