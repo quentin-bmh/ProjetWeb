@@ -46,6 +46,7 @@
                     <a href="clic-and-collect.php">Clic & Collect</a>
                 </li>
             </ul>
+            <div id="icons"></div>
         </nav>
     </div>
 </body>
