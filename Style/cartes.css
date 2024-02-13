@@ -19,7 +19,7 @@ body {
     transform 0.5s;
 }
 
-#s2 {
+#s2 { 
     z-index: 0;
     display: flex;
     flex-direction: row;
