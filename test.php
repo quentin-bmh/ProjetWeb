@@ -23,11 +23,11 @@
     </div>
     <div class="menuAccueil" id="menuAccueil">
         <div class="menuAccueilContent">
-            <a href="">test1</a>
-            <a href="">test2</a>
-            <a href="">test3</a>
-            <a href="">test4</a>
-            <a href="">test5</a>
+            <a href="test.php">Accueil</a>
+            <a href="carte.php">Cartes</a>
+            <a href="reservation.php">Réservation</a>
+            <a href="avis.php">Livre d'or</a>
+            <a href="">Nous contacter</a>
         </div>
     </div>
 </body>
