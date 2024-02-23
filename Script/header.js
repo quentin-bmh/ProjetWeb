@@ -1,11 +1,11 @@
-const links = document.querySelectorAll("nav li");
+function verifierCheckbox() {
+    var checkbox = document.getElementById("checkbox");
+    var menuAccueil = document.getElementById("menuAccueil");
 
-icons.addEventListener("click", () => {
-  nav.classList.toggle("active");
-});
+    if (checkbox.checked) {
+        menuAccueil.classList.add("transitioned");
+    } else {
+        menuAccueil.classList.remove("transitioned");
+    }
+}
 
-links.forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("active");
-  });
-});
