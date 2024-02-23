@@ -8,9 +8,9 @@
     <script src="Script\cartes.js"></script>
 </head>
 <body>
-    <?php include 'header.inc.php'; ?>
-    <?php include 'footer.inc.php'; ?>
+    <?php include 'header.inc.php'; ?>     
     <div class="container">
+         
         <div class="section" id="s1">
             <img src="Image\entree.jpg" alt="" style="width: auto; height: auto;">
         </div>
@@ -21,5 +21,6 @@
             <img src="Image\dessert.jpg" alt="" style="width: auto; height: auto;">
         </div>
     </div>
+    <?php include 'footer.inc.php'; ?>
 </body>
 </html>
