@@ -1,0 +1,101 @@
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+#menu {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+#menu:hover{
+    grid-template-columns: 2fr 1fr 1fr;
+}
+#menu .section{
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-position: center top;
+    background-size: cover;
+    filter: blur(3px);
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+}
+#menu .section .titre{
+    color:white;
+    font-size:5vw;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-color: #000a;
+    position:relative;
+    top:70%;
+    padding: 20px 0;
+}
+#menu .section:hover{
+    filter: blur(0px);
+    z-index: 1;
+    box-shadow: 0 0 100px black;
+}
+#menu .section:hover .titre{
+    opacity: 1;
+}
+#menu .section:nth-child(1){
+    background-image: url("../Image/entree.jpg");
+}
+#menu .section:nth-child(2){
+    background-image: url("../Image/plat.jpg");
+}
+#menu .section:nth-child(3){
+    background-image: url("../Image/dessert.jpg");
+}
+
+#carte{
+    display: none;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
+#carte .section{
+    position: absolute;
+    background-color: red;
+    top: 0%;
+    left:0%;
+    height: 100vh;
+    width: 300%;
+    color:white;
+    font-size: 100px;
+}
+#carte .section:nth-child(1){
+    background-color: green;
+}
+#carte .section:nth-child(2){
+    background-color: red;
+}
+#carte .section:nth-child(3){
+    background-color: blue;
+}
+#carte .section:nth-child(4){
+    background-color: yellow;
+}
+#carte .section .titre{
+    position: sticky;
+    left:-1px;
+    background-color: black;
+    writing-mode:vertical-rl;
+    height: 100%;
+    text-align: center;
+    transform: rotate(180deg);
+}
