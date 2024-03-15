@@ -16,12 +16,8 @@
                 <div id="stick3" class="barre"></div>
             </label>
         </div>
-        <div class="logo">
-            <img src="Image/logo.png" alt="">
-        </div>
-        <div class="contact">
-            <img src="Image/Union.png" alt="" onclick="">
-        </div>
+            <img id="logo" src="Image/LogoRestau3.png" alt="">
+            <img id="contact" src="Image/Union.png" alt="" onclick="">
     </div>
     
     <div class="menuAccueil" id="menuAccueil">
