@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Style/accueil.css">
+    <link rel="stylesheet" href="Style\global.css">
     <script src="Script\accueil.js"></script>
 </head>
 <body>
