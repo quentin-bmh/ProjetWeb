@@ -16,13 +16,13 @@
                 <div id="stick3" class="barre"></div>
             </label>
         </div>
-            <img id="logo" src="Image/LogoRestau3.png" alt="">
+            <img id="logo" src="Image/LogoRestau4.png" alt="">
             <img id="contact" src="Image/Union.png" alt="" onclick="">
     </div>
     
     <div class="menuAccueil" id="menuAccueil">
         <div class="menuAccueilContent">
-            <a href="header.inc.php">Accueil</a>
+            <a href="accueil.php">Accueil</a>
             <a href="carte.php">Cartes</a>
             <a href="reservation.php">Réservation</a>
             <a href="avis.php">Livre d'or</a>
