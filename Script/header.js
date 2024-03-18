@@ -9,3 +9,40 @@ function verifierCheckbox() {
     }
 }
 
+let isChecked = false;
+
+    function toggleChecked() {
+      const listeContact = document.getElementById('listeCo');
+      const logoContact = document.getElementById('img');
+      
+      if (isChecked) {
+        console.log("imageDéCliquée");
+        listeContact.classList.add("hidden");
+        logoContact.classList.remove("animationTremblement");
+
+      } else {
+        console.log("imageCliquée");
+        listeContact.classList.remove("hidden");
+        logoContact.classList.add("animationTremblement");
+
+      }
+      isChecked = !isChecked;
+    }
+
+    function toggleSection(){
+      var creationSection = document.getElementById('Login');
+      var connexionSection = document.getElementById('SignUp');
+      creationSection.classList.toggle('hidden');
+      connexionSection.classList.toggle('hidden');
+  }
+
+  function showConnection() {
+    var form = document.getElementById('form');
+    if (form.hasAttribute('hidden')) {
+        form.removeAttribute('hidden');
+        console.log("Form shown");
+    } else {
+        form.setAttribute('hidden', true);
+        console.log("Form hidden");
+    }
+}
