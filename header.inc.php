@@ -6,6 +6,7 @@
 
 </head>
 <header>
+
     <div class="navbar">
         <div class="accueil">
             <span class="transition"></span>
@@ -37,6 +38,9 @@
     <a id="connexion" onclick="showConnection()">
         <img src="Image/profilPicture.jpg" alt="">
     </a>
+    <div class="profil">
+        <h4>profil</h4>
+    </div>
     <div class="formConnection" id="form" hidden>
         <div class="container" id="Login">
             <div class="box form-box">
@@ -58,7 +62,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> 
     
         <div class="container hidden" id="SignUp">
             <div class="box form-box">
@@ -86,6 +90,29 @@
                         Déjà membre ? <a href="#" onclick="toggleSection('Login');">Se connecter</a>
                     </div>
                 </form>
+                <?php 
+                    $con = mysqli_connect("localhost","root","","projetWeb") or die("Error connect");
+                    if(isset($_POST['submitInscription'])){
+                        $username = $_POST['username'];
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+            
+                        $verify_query = mysqli_query($con,"SELECT Email FROM users WHERE Email='$email'");
+                        if(mysqli_num_rows($verify_query) !=0 ){
+                            echo "<div class='message'>
+                                      <p>Cet e-mail est déjà utilisé. Veuillez en choisir un autre.</p>
+                                  </div> <br>";
+                            echo "<a href='javascript:self.history.back()'><button class='btn'>Revenir</button>";
+                        }
+                        else{
+                            mysqli_query($con,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$password')") or die("Une erreur s'est produite.");
+                            echo "<div class='message'>
+                                      <p>Inscription réussie !</p>
+                                  </div> <br>";
+                            echo "<a href='accueil.php'><button class='btn'>Se connecter maintenant</button>";
+                        }
+                    }
+                ?>
             </div>
         </div>
     </div>
