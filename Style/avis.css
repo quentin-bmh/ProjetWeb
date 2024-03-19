@@ -1,0 +1,44 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style pour chaque div de personne */
+.personne {
+border: 1px solid #ccc; /* Bordure pour chaque div de personne */
+padding: 10px; /* Espacement intérieur */
+margin-bottom: 20px; /* Marge en bas pour séparer chaque div de personne */
+}
+
+#ajouterAvis {
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#ajouterAvis:hover {
+  background-color: #312c2c;
+}
+
+input {
+  width: 100%;
+  padding: 4px;
+  margin: 4px 0;
+  box-shadow: #666;
+}
