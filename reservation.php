@@ -3,17 +3,37 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '')
 
 if(isset($_POST['submit'])) {
     try {
-        if(!empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['phone']) && !empty($_POST['nbrPers']) && !empty($_POST['hours']) && !empty($_POST['days'])) {
+        if(!empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['phone']) && !empty($_POST['nbrPers']) && !empty($_POST['hour']) && !empty($_POST['day'])) {
             $nom = $_POST['nom'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
             $nbrPers = $_POST['nbrPers'];
-            $hours = $_POST['hours'];
-            $days = $_POST['days'];
+            $hours = $_POST['hour'];
+            $days = $_POST['day'];
 
             $sql = $bdd->prepare('INSERT INTO reservation(day, hour, name, mail, phone, nbrPers) VALUES (:day, :hour, :nom, :email, :phone, :nbrPers)');
             $sql->execute(['day' => $days, 'hour' => $hours, 'nom' => $nom, 'email' => $email, 'phone' => $phone, 'nbrPers' => $nbrPers]);
             echo "<script>alert('Réservation effectuée avec succès !');</script>";
+
+            // Envoi d'un e-mail
+            $to = "montoulieu.quentin@gmail.com";
+            $subject = "Nouvelle réservation";
+            $message = "Une nouvelle réservation a été effectuée.\nNom: $nom\nE-mail: $email\nTéléphone: $phone\nNombre de personnes: $nbrPers\nJour: $days\nHeure: $hours";
+            $headers = "From: montoulieu.quentin@gmail.com";
+
+            // Configuration SMTP pour Gmail avec connexion sécurisée TLS
+            ini_set("SMTP", "smtp.gmail.com");
+            ini_set("smtp_port", "587");
+
+            // Authentification SMTP
+            ini_set('smtp_auth', 'true');
+            ini_set('username', 'montoulieu.quentin@gmail.com');
+            ini_set('password', 'ncjy hhvq lned owwc');
+
+            // Connexion sécurisée TLS
+            ini_set('smtp_secure', 'tls');
+
+            mail($to, $subject, $message, $headers);
         } else {
             echo "<script>alert('Veuillez remplir tous les champs du formulaire.');</script>";
         }
@@ -22,7 +42,6 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +60,7 @@ if(isset($_POST['submit'])) {
                 <h3>Reservation</h3>
                 <form action="" method="post" onsubmit="return ValiderFormulaire()">
                     <div class="form-row">
-                        <select name="days" id="day">
+                        <select name="day" id="day">
                             <option value="day-select">Sélectionnez le jour</option>
                             <option value="sunday">Lundi</option>
                             <option value="monday">Mardi</option>
@@ -52,7 +71,7 @@ if(isset($_POST['submit'])) {
                             <option value="saturday">Dimanche</option>
                         </select>
 
-                        <select name="hours" id="hour">
+                        <select name="hour" id="hour">
                             <option value="hour-select">Selectionnez une heure</option>
                             <option disabled="disabled">--------------</option>
                             <option disabled="disabled">Service midi:</option>

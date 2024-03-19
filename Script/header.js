@@ -4,10 +4,24 @@ function verifierCheckbox() {
 
     if (checkbox.checked) {
         menuAccueil.classList.add("transitioned");
+        document.addEventListener("click", fermerMenuEnDehors);
     } else {
         menuAccueil.classList.remove("transitioned");
+        document.removeEventListener("click", fermerMenuEnDehors);
     }
 }
+
+function fermerMenuEnDehors(event) {
+    var menuAccueil = document.getElementById("menuAccueil");
+    var checkbox = document.getElementById("checkbox");
+    if (!menuAccueil.contains(event.target) && event.target !== checkbox) {
+        checkbox.checked = false;
+        menuAccueil.classList.remove("transitioned");
+        document.removeEventListener("click", fermerMenuEnDehors);
+    }
+}
+
+
 
 let isChecked = false;
 
