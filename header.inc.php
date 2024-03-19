@@ -7,7 +7,7 @@
 </head>
 <header>
 
-    <div class="navbar">
+<div class="navbar">
         <div class="accueil">
             <span class="transition"></span>
             <input id="checkbox" type="checkbox" onclick="verifierCheckbox()">
@@ -17,9 +17,12 @@
                 <div id="stick3" class="barre"></div>
             </label>
         </div>
-            <img id="logo" src="Image/LogoRestau4.png" alt="">
-            <img id="contact" src="Image/Union.png" alt="" onclick="">
-            
+        <div class="logo">
+            <img src="Image/logo.png" alt="">
+        </div>
+        <div class="contact" id="contact">
+            <img src="Image/Union.png" alt="" id="img" onclick="toggleChecked()">
+        </div>
         <div class="listeContact , hidden" id="listeCo" >
             <a href="">Mail: restaurant.qmb@gmail.com</a>
             <a href="">Telephone: 05.00.00.00.00</a>
@@ -28,7 +31,7 @@
     
     <div class="menuAccueil" id="menuAccueil">
         <div class="menuAccueilContent">
-            <a href="accueil.php">Accueil</a>
+            <a href="header.inc.php">Accueil</a>
             <a href="carte.php">Cartes</a>
             <a href="reservation.php">Réservation</a>
             <a href="avis.php">Livre d'or</a>

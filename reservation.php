@@ -22,8 +22,9 @@ if(isset($_POST['submit'])) {
             $headers = "From: montoulieu.quentin@gmail.com";
 
             // Configuration SMTP pour Gmail avec connexion sécurisée TLS
-            ini_set("SMTP", "smtp.gmail.com");
-            ini_set("smtp_port", "587");
+            ini_set("SMTP", "smtp.monfai.fr");
+            ini_set("smtp_port", "25");
+
 
             // Authentification SMTP
             ini_set('smtp_auth', 'true');
