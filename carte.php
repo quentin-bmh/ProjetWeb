@@ -12,18 +12,18 @@
     <?php include 'header.inc.php'; ?>
     <div id="menu">
         <div class="section" id="s1">
-            <div class="titre">Entrées</div>
+            <div class="titre font">Entrées</div>
         </div>
         <div class="section" id="s2">
-            <div class="titre">Plats</div>
+            <div class="titre font">Plats</div>
         </div>
         <div class="section" id="s3">
-            <div class="titre">Desserts</div>
+            <div class="titre font">Desserts</div>
         </div>
     </div>
     <div id="carte">
         <div class="section" id="boissons">
-            <div class="titre">
+            <div class="titre font">
                 BOISSONS
             </div>
             <div class="contenu">
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="section" id="entrees">
-            <div class="titre">
+            <div class="titre font">
                 ENTREES
             </div>
             <div class="contenu">
@@ -178,7 +178,7 @@
             </div>
         </div>
         <div class="section" id="plats">
-            <div class="titre">
+            <div class="titre font">
                 PLATS
             </div>
             <div class="contenu">
@@ -255,7 +255,7 @@
             </div>
         </div>
         <div class="section" id="desserts">
-            <div class="titre">
+            <div class="titre font">
                 DESSERTS
             </div>
             <div class="contenu">
