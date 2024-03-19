@@ -1,3 +1,4 @@
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -384,3 +385,115 @@ body {
 /*
  BACKGROUND DEVIENT TRANSPARENT ET FLOU
 */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.containermenu {
+    display: flex;
+    height: 100vh;
+}
+
+#s1 {
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgb(94, 156, 248);
+    filter: blur(3px);
+    transition: 
+    background 0.5s,
+    transform 0.5s;
+}
+
+#s2 { 
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgba(203, 138, 138);
+    filter: blur(3px);
+    transition:
+    background 0.5s,
+    transform 0.5s;
+}
+
+#s3 {
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgb(75, 163, 17);
+    filter: blur(3px);
+    transition:
+    background 0.5s,
+    transform 0.5s;
+}
+
+#s1:hover {
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgb(94, 156, 248,0.8);
+    filter: blur(0px);
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+#s2:hover {
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgba(203, 138, 138, 0.8);
+    filter: blur(0px);
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+#s3:hover {
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    background: rgb(75, 163, 17,0.8);
+    filter: blur(0px);
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+.blocHorizontal {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Activation du défilement horizontal */
+    overflow-y: hidden; /* Désactivation du défilement vertical */
+}
+
+.container {
+    display: none;
+    width: 100vw; 
+    height: 100vh; 
+    overflow-x: auto; /* Activation du défilement horizontal */
+    overflow-y: hidden; /* Désactivation du défilement vertical */
+}
+
+.one, .two, .three, .four {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vh; /* Remplissage de la largeur de la vue */
+    height: 100vw; /* Remplissage de la hauteur de la vue */
+    transform: rotate(-90deg) translateX(-100vh); /* Correction de la rotation et de la translation */
+    transform-origin: top left;
+}
+
+.one {
+    background: rgb(94, 156, 248);
+}
+.two {
+    background: rgba(203, 138, 138);
+}
+.three {
+    background: rgb(75, 163, 17);
+}
+.four {
+    background: #8e8358;
+}

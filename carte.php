@@ -11,6 +11,8 @@
 <body>
     <?php include 'header.inc.php'; ?>
     <div id="menu">
+    <?php include 'footer.inc.php'; ?>
+    <div class="containermenu" onclick="toggleContainers()">
         <div class="section" id="s1">
             <div class="titre font">Entrées</div>
         </div>
@@ -332,6 +334,13 @@
             </div>
         </div>
     </div>
-    <?php include 'footer.inc.php'; ?>
+    <div class="container">
+        <div class="blocHorizontal">
+            <div class="slide one">Slide 1</div>
+            <div class="slide two">Slide 2</div>
+            <div class="slide three">Slide 3</div>
+            <div class="slide four">Slide 4</div>
+        </div>
+    </div>
 </body>
 </html>
