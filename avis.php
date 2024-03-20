@@ -12,13 +12,13 @@
 <?php
     try{
         $mysqlConnection = new PDO(
-            'mysql:host=localhost;dbname=ProjetWeb;charset=utf8',
+            'mysql:host=localhost;dbname=projetweb;charset=utf8',
             'root',
             ''
         );
     }
     catch (Exception $e){
-        dd('Erreur : ' . $e->getMessage());
+        var_dump('Erreur : ' . $e->getMessage());
     }
 ?>
 
@@ -29,7 +29,7 @@
     <div class="haut">
         <div> 
             <?php
-            $maTableStatement = $mysqlConnection->prepare('SELECT AVG(score) AS moyenne_notes FROM ProjetWeb');
+            $maTableStatement = $mysqlConnection->prepare('SELECT AVG(note) AS moyenne_notes FROM avis');
             $maTableStatement->execute();
             $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);//prend que ce qu'il faut
             $moyenneNotes = $resultatRequete['moyenne_notes'];            //le fetchall prend tt donc
@@ -44,20 +44,22 @@
                 $etoiles = "★★★☆☆";
             } elseif ($moyenneNotes >= 4 && $moyenneNotes <= 5) {
                 $etoiles = "★★★★☆";
+            } elseif ($moyenneNotes == 5) {
+                $etoiles = "★★★★★";
             } else {
                 $etoiles = "Erreur : Note invalide";
             }
             echo "<p>$etoiles</p>";
             ?>
         </div>
-        <div> 
+        <div> <!--
             <?php
-            $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(prenom) AS count_prenom FROM ProjetWeb');
+            $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(*) AS count_prenom FROM avis');
             $maTableStatement->execute();
             $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);
             $nombreDePrenoms = $resultatRequete['count_prenom'];
-            echo "<p>$nombreDePrenoms avis</p>";
-            ?>
+            echo "<p>$nombreDePrenoms avis</p>"
+            ?> -->
         </div>
         <div>
             <label for="tri">Trier par:</label>
@@ -124,11 +126,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class=tri">
             <?php
             function trierParNotesDecroissantes($a, $b) {
-                return $b['score'] - $a['score'];
+                return $b['note'] - $a['note'];
             }
 
             function trierParNotesCroissantes($a, $b) {
-                return $a['score'] - $b['score'];
+                return $a['note'] - $b['note'];
             }
 
             function trierParDateAncienne($a, $b) {
@@ -139,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return strtotime($b['date']) - strtotime($a['date']);
             }
 
-            $maTableStatement = $mysqlConnection->prepare('SELECT * FROM ProjetWeb');
+            $maTableStatement = $mysqlConnection->prepare('SELECT * FROM avis');
             $maTableStatement->execute();
             $donnees = $maTableStatement->fetchAll();
 
@@ -168,10 +170,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Affichage des données triées
             foreach ($donnees as $resultat) {
                 echo "<div class='personne'>";
-                echo "<p>Prénom: {$resultat['prenom']}</p>";
-                echo "<p>Commentaire: {$resultat['commentaire']}</p>";
+                //echo "<p>Prénom: {$resultat['prenom']}</p>";
+                echo "<p>Commentaire: {$resultat['avis']}</p>";
                 echo "<p>Date: {$resultat['date']}</p>";
-                echo "<p>Note: {$resultat['score']}</p>";
+                echo "<p>Note: {$resultat['note']}</p>";
                 echo "</div>";
             }
             ?>
