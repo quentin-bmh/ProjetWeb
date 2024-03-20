@@ -20,7 +20,7 @@ function ValiderFormulaire() {
         alert("Veuillez entrer un numéro de téléphone valide (10 chiffres, commençant par 0).");
         return false;
     }
-    if (nombre_personnes === '' || nombre_personnes < 1) {
+    if (nombre_personnes === '' ) {
         alert("Veuillez indiquer le nombre de personnes (minimum 1).");
         return false;
     }
