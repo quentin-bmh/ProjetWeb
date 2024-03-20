@@ -94,7 +94,7 @@ if(isset($_POST['submit'])) {
                         <input type="email" placeholder="Mail" id="mail" name="email">
                     </div>
                     <div class="form-row">
-                        <input type="number" placeholder="Nombre de personne?" min="1" id="nbrPers" name="nbrPers">
+                        <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbrPers" name="nbrPers">
                         <input type="submit" value="Réserver la table" name="submit">
                     </div>
                 </form>
