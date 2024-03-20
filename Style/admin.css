@@ -4,31 +4,38 @@ body{
     background-color: black;
     color:white;
 }
-table{
+#table-res{
     text-align: center;
     width: 100%;
     border-spacing: 10px 0px;
     font-size: 25px;
 }
-table > thead{
+#table-res > thead{
     color:#fc8f00;
 }
-table th{
+#table-res th{
     border-bottom: 5px solid #fc8f00;
     border-radius: 10px 10px 0 0;
 }
-table th:nth-child(1){
+#table-res th:nth-child(1){
     width: 10%;
     border-spacing: 0;
 }
-table th:nth-child(2){
+#table-res th:nth-child(2){
+    width: 10%;
+    border-spacing: 0;
+}
+#table-res th:nth-child(3){
     width: 15%;
 }
-table th:nth-child(3){
+#table-res th:nth-child(4){
     width: 40%;
 }
-table th:nth-child(4){
+#table-res th:nth-child(5){
     width: 40%;
+}
+#table-res th:nth-child(5){
+    width: 2%;
 }
 #logo-admin{
     width: 100px;
@@ -40,4 +47,27 @@ table th:nth-child(4){
     font-size: 60px;
     text-align: center;
     margin: auto;
+}
+#table-com{
+    text-align: center;
+    width: 100%;
+    border-spacing: 10px 0px;
+    font-size: 25px;
+}
+#table-com > thead{
+    color:#0097fc;
+}
+#table-com th{
+    border-bottom: 5px solid #0097fc;
+    border-radius: 10px 10px 0 0;
+}
+#table-com th:nth-child(1){
+    width: 20%;
+    border-spacing: 0;
+}
+#table-com th:nth-child(2){
+    width: 5%;
+}
+#table-com th:nth-child(3){
+    width: 75%;
 }

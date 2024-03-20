@@ -16,6 +16,7 @@ if(isset($_POST['submit'])) {
             echo "<script>alert('Réservation effectuée avec succès !');</script>";
 
             // Envoi d'un e-mail
+            /*
             $to = "montoulieu.quentin@gmail.com";
             $subject = "Nouvelle réservation";
             $message = "Une nouvelle réservation a été effectuée.\nNom: $nom\nE-mail: $email\nTéléphone: $phone\nNombre de personnes: $nbrPers\nJour: $days\nHeure: $hours";
@@ -35,6 +36,7 @@ if(isset($_POST['submit'])) {
             ini_set('smtp_secure', 'tls');
 
             mail($to, $subject, $message, $headers);
+            */
         } else {
             echo "<script>alert('Veuillez remplir tous les champs du formulaire.');</script>";
         }
