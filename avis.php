@@ -71,49 +71,54 @@
     <div>
         <div>
             <input type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
+            <input type="submit" id="ajouterAvis" value="Ajouter un Avis">
+        <div>
+    <form id="formulaireAvis" method="post" style="display:none" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div>
+            <label for="reviewText">Votre avis :</label><br>
+            <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
         </div>
-        <form id="formulaireAvis" style="display:none">
-            <div>
-                <label for="reviewText">Votre avis :</label><br>
-                <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
+        <div>
+            <label for="rating">Votre note :</label><br>
+            <div class="stars" onclick="selectRating(event)">
+                <span class="star" data-value="1"></span>
+                <span class="star" data-value="2"></span>
+                <span class="star" data-value="3"></span>
+                <span class="star" data-value="4"></span>
+                <span class="star" data-value="5"></span>
             </div>
-            <div>
-                <label for="rating">Votre note :</label><br>
-                <div class="stars" onclick="selectRating(event)">
-                    <span class="star" data-value="1"></span>
-                    <span class="star" data-value="2"></span>
-                    <span class="star" data-value="3"></span>
-                    <span class="star" data-value="4"></span>
-                    <span class="star" data-value="5"></span>
-                </div>
-                <input type="hidden" id="rating" name="rating" value="0">
-            </div>
-            <input type="submit" value="Envoyer l'avis">
-        </form>
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            <input type="hidden" id="rating" name="rating" value="0">
+        </div>
+        <input type="submit" value="Envoyer l'avis">
+    </form>
+</div>
 
-                if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                    $reviewText = $_POST['reviewText'];
-                    $rating = $_POST['rating'];
+    $mysqlConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                    try {
-                        $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
-                        $stmt->bindParam(':reviewText', $reviewText);
-                        $stmt->bindParam(':rating', $rating);
+    if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
 
-                        $stmt->execute();
+        $reviewText = $_POST['reviewText'];
+        $rating = $_POST['rating'];
 
-                        echo "Avis ajouté avec succès!";
-                    } catch (PDOException $e) {
-                        echo "Erreur: " . $e->getMessage();
-                    }
-                } else {
-                    echo "Tous les champs doivent être remplis!";
-                }
-            }
-            ?>
+        try {
+            $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
+            $stmt->bindParam(':reviewText', $reviewText);
+            $stmt->bindParam(':rating', $rating);
+
+            $stmt->execute();
+
+            echo "Avis ajouté avec succès!";
+        } catch (PDOException $e) {
+            echo "Erreur: " . $e->getMessage();
+        }
+    } else {
+        echo "Tous les champs doivent être remplis!";
+    }
+}
+?>
         </div>
     </div>
     <div class=tri">

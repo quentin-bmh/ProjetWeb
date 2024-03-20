@@ -56,20 +56,6 @@ input[type="submit"] {
   z-index: 2; /* Assure que le fond de recouvrement est derrière le popup mais devant le reste du contenu */
 }
 
-#ajouterAvis {
-  background-color: rgb(0, 0, 0);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#ajouterAvis:hover {
-  background-color: #312c2c;
-}
-
 input {
   width: 100%;
   padding: 4px;
