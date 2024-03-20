@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="Style\avis.css">
     <link rel="stylesheet" href="Style\global.css">
-    <script src="Script\avis.js"></script>
+    <script src="Script\avis.js"></script> 
 </head>
 
 <?php
@@ -24,12 +24,11 @@
 
 <body>
     <?php include 'header.inc.php'; ?>
-    <?php include 'footer.inc.php'; ?>
 
-    <div class="container">
+    <div class="container_avis">
     <div class="haut">
         <div> 
-        <?php
+            <?php
             $maTableStatement = $mysqlConnection->prepare('SELECT AVG(score) AS moyenne_notes FROM ProjetWeb');
             $maTableStatement->execute();
             $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);//prend que ce qu'il faut
@@ -49,16 +48,16 @@
                 $etoiles = "Erreur : Note invalide";
             }
             echo "<p>$etoiles</p>";
-        ?>
+            ?>
         </div>
         <div> 
-        <?php
+            <?php
             $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(prenom) AS count_prenom FROM ProjetWeb');
             $maTableStatement->execute();
             $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);
             $nombreDePrenoms = $resultatRequete['count_prenom'];
             echo "<p>$nombreDePrenoms avis</p>";
-        ?>
+            ?>
         </div>
         <div>
             <label for="tri">Trier par:</label>
@@ -69,7 +68,55 @@
                 <option value="Récent">Récent</option>
             </select>
         </div>
-        <div class=tri">
+    <div>
+        <div>
+            <input type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
+        </div>
+        <form id="formulaireAvis" style="display:none">
+            <div>
+                <label for="reviewText">Votre avis :</label><br>
+                <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
+            </div>
+            <div>
+                <label for="rating">Votre note :</label><br>
+                <div class="stars" onclick="selectRating(event)">
+                    <span class="star" data-value="1"></span>
+                    <span class="star" data-value="2"></span>
+                    <span class="star" data-value="3"></span>
+                    <span class="star" data-value="4"></span>
+                    <span class="star" data-value="5"></span>
+                </div>
+                <input type="hidden" id="rating" name="rating" value="0">
+            </div>
+            <input type="submit" value="Envoyer l'avis">
+        </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
+
+                    $reviewText = $_POST['reviewText'];
+                    $rating = $_POST['rating'];
+
+                    try {
+                        $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
+                        $stmt->bindParam(':reviewText', $reviewText);
+                        $stmt->bindParam(':rating', $rating);
+
+                        $stmt->execute();
+
+                        echo "Avis ajouté avec succès!";
+                    } catch (PDOException $e) {
+                        echo "Erreur: " . $e->getMessage();
+                    }
+                } else {
+                    echo "Tous les champs doivent être remplis!";
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class=tri">
             <?php
             function trierParNotesDecroissantes($a, $b) {
                 return $b['score'] - $a['score'];
@@ -113,7 +160,6 @@
                     usort($donnees, 'trierParNotesDecroissantes');
                     break;
             }
-
             // Affichage des données triées
             foreach ($donnees as $resultat) {
                 echo "<div class='personne'>";
@@ -124,45 +170,6 @@
                 echo "</div>";
             }
             ?>
-</div>
-    <div class="bas">
-        <input type="submit" id="ajouterAvis" value="Ajouter un Avis"/>
-        <input type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" style="display: none;"/>
-    </div>
-    </div>
-        <div class="avis">
-            <?php
-            $maTableStatement = $mysqlConnection->prepare('SELECT prenom, commentaire, date, score FROM ProjetWeb');
-            $maTableStatement->execute();
-            $resultats = $maTableStatement->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($resultats as $resultat) {
-                $prenom = $resultat['prenom'];
-                $commentaire = $resultat['commentaire'];
-                $date = $resultat['date'];
-                $score = $resultat['score'];
-
-                if ($score >= 0 && $score < 1) {
-                    $etoiles = "☆☆☆☆☆";
-                } elseif ($score >= 1 && $score < 2) {
-                    $etoiles = "★☆☆☆☆";
-                } elseif ($score >= 2 && $score < 3) {
-                    $etoiles = "★★☆☆☆";
-                } elseif ($score >= 3 && $score < 4) {
-                    $etoiles = "★★★☆☆";
-                } elseif ($score >= 4 && $score <= 5) {
-                    $etoiles = "★★★★☆";
-                } else {
-                    $etoiles = "Erreur : Note invalide";
-                }
-
-                echo "<div class='personne'>";
-                echo "<p>Prénom: $prenom</p>";
-                echo "<p>Commentaire: $commentaire</p>";
-                echo "<p>Date: $date</p>";
-                echo "<p>Note: $score - Étoiles: $etoiles</p>";
-                echo "</div>";
-            }
-        ?>
     </div>
 </body>
 </html>

@@ -223,6 +223,7 @@ header{
 }
 
 .form-box {
+  z-index: 4;
   width: 450px;
   margin: 0px 10px;
 }

@@ -1,5 +1,5 @@
 
-body {
+.container_avis {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
@@ -10,16 +10,50 @@ body {
   height: 100vh;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Style pour chaque div de personne */
 .personne {
 border: 1px solid #ccc; /* Bordure pour chaque div de personne */
 padding: 10px; /* Espacement intérieur */
 margin-bottom: 20px; /* Marge en bas pour séparer chaque div de personne */
+}
+
+.stars {
+  unicode-bidi: bidi-override;
+  color: #ccc;
+  font-size: 36px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+}
+.stars:hover,
+.stars:hover ~ .star:before {
+  color: #fdd835;
+}
+.stars:hover:before,
+.stars:hover ~ .star:before {
+  color: inherit;
+}
+.star {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.star:before {
+  content: "☆";
+}
+input[type="submit"] {
+  display: block;
+  margin-top: 10px;
+}
+
+.overlay {
+  display: none; /* Le fond de recouvrement est masqué par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
+  z-index: 2; /* Assure que le fond de recouvrement est derrière le popup mais devant le reste du contenu */
 }
 
 #ajouterAvis {
