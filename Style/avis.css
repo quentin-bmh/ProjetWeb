@@ -1,4 +1,12 @@
-
+body{
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.formConnection{
+  display: none;
+}
 .container_avis {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
