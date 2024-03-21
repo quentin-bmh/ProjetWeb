@@ -29,155 +29,148 @@
     <div class="haut">
         <div> 
             <?php
-            $maTableStatement = $mysqlConnection->prepare('SELECT AVG(note) AS moyenne_notes FROM avis');
-            $maTableStatement->execute();
-            $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);//prend que ce qu'il faut
-            $moyenneNotes = $resultatRequete['moyenne_notes'];            //le fetchall prend tt donc
-            echo "<p>La note moyenne est $moyenneNotes</p>";              //ça économise
-            if ($moyenneNotes >= 0 && $moyenneNotes < 1) {
-                $etoiles = "☆☆☆☆☆";
-            } elseif ($moyenneNotes >= 1 && $moyenneNotes < 2) {
-                $etoiles = "★☆☆☆☆";
-            } elseif ($moyenneNotes >= 2 && $moyenneNotes < 3) {
-                $etoiles = "★★☆☆☆";
-            } elseif ($moyenneNotes >= 3 && $moyenneNotes < 4) {
-                $etoiles = "★★★☆☆";
-            } elseif ($moyenneNotes >= 4 && $moyenneNotes <= 5) {
-                $etoiles = "★★★★☆";
-            } elseif ($moyenneNotes == 5) {
-                $etoiles = "★★★★★";
-            } else {
-                $etoiles = "Erreur : Note invalide";
-            }
-            echo "<p>$etoiles</p>";
+                $maTableStatement = $mysqlConnection->prepare('SELECT AVG(note) AS moyenne_notes FROM avis');
+                $maTableStatement->execute();
+                $resultatRequete = $maTableStatement->fetchAll();
+                $moyenneNotes = $resultatRequete[0]['moyenne_notes'];
+                echo "<p>La note moyenne est $moyenneNotes</p>";
+                if ($moyenneNotes >= 0 && $moyenneNotes < 1) {
+                    $etoiles = "☆☆☆☆☆";
+                } elseif ($moyenneNotes >= 1 && $moyenneNotes < 2) {
+                    $etoiles = "★☆☆☆☆";
+                } elseif ($moyenneNotes >= 2 && $moyenneNotes < 3) {
+                    $etoiles = "★★☆☆☆";
+                } elseif ($moyenneNotes >= 3 && $moyenneNotes < 4) {
+                    $etoiles = "★★★☆☆";
+                } elseif ($moyenneNotes >= 4 && $moyenneNotes <= 5) {
+                    $etoiles = "★★★★☆";
+                } elseif ($moyenneNotes == 5) {
+                    $etoiles = "★★★★★";
+                } else {
+                    $etoiles = "Erreur : Note invalide";
+                }
+                echo "<p>$etoiles</p>";
             ?>
         </div>
-        <div> <!--
+        <div>
             <?php
-            $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(*) AS count_prenom FROM avis');
+                $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(*) AS count_prenom FROM avis');
+                $maTableStatement->execute();
+                $resultatRequete = $maTableStatement->fetchAll();
+                $nombreDePrenoms = $resultatRequete[0]['count_prenom'];
+                echo "<p>$nombreDePrenoms avis</p>";
+            ?>
+        </div>
+        <div class="tri">
+        <?php
+            $tri = $_GET['tri'] ?? 'Bon Avis';
+
+            switch ($tri) {
+                case '':
+                    $sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    break;
+                case 'Bas Avis':
+                    $sql = 'SELECT * FROM avis ORDER BY note ASC';
+                    break;
+                case 'Ancien':
+                    $sql = 'SELECT * FROM avis ORDER BY date ASC';
+                    break;
+                case 'Récent':
+                    $sql = 'SELECT * FROM avis ORDER BY date DESC';
+                    break;
+                default:
+                    $sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    break;
+            }
+
+            $maTableStatement = $mysqlConnection->prepare($sql);
             $maTableStatement->execute();
-            $resultatRequete = $maTableStatement->fetch(PDO::FETCH_ASSOC);
-            $nombreDePrenoms = $resultatRequete['count_prenom'];
-            echo "<p>$nombreDePrenoms avis</p>"
-            ?> -->
+            $donnees = $maTableStatement->fetchAll();
+        ?>
         </div>
         <div>
             <label for="tri">Trier par:</label>
             <select id="tri" onchange="trierDonnees()">
-                <option value="Notes ↑">Notes ↑</option>
-                <option value="Notes ↓">Notes ↓</option>
-                <option value="Ancien">Ancien</option>
-                <option value="Récent">Récent</option>
+                <option value="Bon Avis" <?php if ($tri == 'Bon Avis') echo 'selected'; ?>>Bon Avis</option>
+                <option value="Bas Avis" <?php if ($tri == 'Bas Avis') echo 'selected'; ?>>Bas Avis</option>
+                <option value="Ancien" <?php if ($tri == 'Ancien') echo 'selected'; ?>>Ancien</option>
+                <option value="Récent" <?php if ($tri == 'Récent') echo 'selected'; ?>>Récent</option>
             </select>
         </div>
-    <div>
         <div>
-            <input type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
+            <input style="display:<?php echo'block';?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
             <input type="submit" id="ajouterAvis" value="Ajouter un Avis">
-        <div>
-    <form id="formulaireAvis" method="post" style="display:none" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div>
-            <label for="reviewText">Votre avis :</label><br>
-            <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
+
+            <input style="display:
+                <?php
+                    if(isset($_SESSION)) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
+                        echo 'block';               //alors une session a été crée
+                    } else {
+                        echo 'none';
+                    }
+                ?>
+            " type="submit" id="ajouterAvis" value="Ajouter un Avis">
         </div>
         <div>
-            <label for="rating">Votre note :</label><br>
-            <div class="stars" onclick="selectRating(event)">
-                <span class="star" data-value="1"></span>
-                <span class="star" data-value="2"></span>
-                <span class="star" data-value="3"></span>
-                <span class="star" data-value="4"></span>
-                <span class="star" data-value="5"></span>
-            </div>
-            <input type="hidden" id="rating" name="rating" value="0">
+            <form id="formulaireAvis" method="post" style="display:none" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div>
+                    <label for="reviewText">Votre avis :</label><br>
+                    <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
+                </div>
+                <div>
+                    <label for="rating">Votre note :</label><br>
+                    <div class="stars" onclick="selectRating(event)">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" value="0">
+                </div>
+                <input type="submit" value="Envoyer l'avis">
+            </form>
         </div>
-        <input type="submit" value="Envoyer l'avis">
-    </form>
-</div>
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $mysqlConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $mysqlConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
 
-    if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
+                    $reviewText = $_POST['reviewText'];
+                    $rating = $_POST['rating'];
 
-        $reviewText = $_POST['reviewText'];
-        $rating = $_POST['rating'];
+                    try {
+                        $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
+                        $stmt->bindParam(':reviewText', $reviewText);
+                        $stmt->bindParam(':rating', $rating);
 
-        try {
-            $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
-            $stmt->bindParam(':reviewText', $reviewText);
-            $stmt->bindParam(':rating', $rating);
+                        $stmt->execute();
 
-            $stmt->execute();
-
-            echo "Avis ajouté avec succès!";
-        } catch (PDOException $e) {
-            echo "Erreur: " . $e->getMessage();
-        }
-    } else {
-        echo "Tous les champs doivent être remplis!";
-    }
-}
-?>
+                        echo "Avis ajouté avec succès!";
+                    } catch (PDOException $e) {
+                        echo "Erreur: " . $e->getMessage();
+                    }
+                } else {
+                    echo "Tous les champs doivent être remplis!";
+                }
+            }
+        ?>
         </div>
-    </div>
-    <div class=tri">
+            
+        <div>
             <?php
-            function trierParNotesDecroissantes($a, $b) {
-                return $b['note'] - $a['note'];
-            }
-
-            function trierParNotesCroissantes($a, $b) {
-                return $a['note'] - $b['note'];
-            }
-
-            function trierParDateAncienne($a, $b) {
-                return strtotime($a['date']) - strtotime($b['date']);
-            }
-
-            function trierParDateRecente($a, $b) {
-                return strtotime($b['date']) - strtotime($a['date']);
-            }
-
-            $maTableStatement = $mysqlConnection->prepare('SELECT * FROM avis');
-            $maTableStatement->execute();
-            $donnees = $maTableStatement->fetchAll();
-
-            // Initialisation de la fonction de tri
-            $tri = $_GET['tri'] ?? 'Notes ↑'; // Défaut: tri par Notes ↑
-
-            // Tri des données
-            switch ($tri) {
-                case 'Notes ↑':
-                    usort($donnees, 'trierParNotesDecroissantes');
-                    break;
-                case 'Notes ↓':
-                    usort($donnees, 'trierParNotesCroissantes');
-                    break;
-                case 'Ancien':
-                    usort($donnees, 'trierParDateAncienne');
-                    break;
-                case 'Récent':
-                    usort($donnees, 'trierParDateRecente');
-                    break;
-                default:
-                    // Par défaut, tri par notes décroissantes
-                    usort($donnees, 'trierParNotesDecroissantes');
-                    break;
-            }
-            // Affichage des données triées
-            foreach ($donnees as $resultat) {
-                echo "<div class='personne'>";
-                //echo "<p>Prénom: {$resultat['prenom']}</p>";
-                echo "<p>Commentaire: {$resultat['avis']}</p>";
-                echo "<p>Date: {$resultat['date']}</p>";
-                echo "<p>Note: {$resultat['note']}</p>";
-                echo "</div>";
-            }
+                foreach ($donnees as $resultat) {
+                    echo "<div class='personne'>";
+                    //echo "<p>Prénom: {$resultat['prenom']}</p>";
+                    echo "<p>Commentaire: {$resultat['avis']}</p>";
+                    echo "<p>Date: {$resultat['date']}</p>";
+                    echo "<p>Note: {$resultat['note']}</p>";
+                    echo "</div>";
+                }
             ?>
-    </div>
+        </div>
 </body>
-</html>
+</html> 
 </html>
