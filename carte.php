@@ -106,30 +106,30 @@
             </div>
             <div class="contenu">
                 <div class="item">
-                    <img src="Image/carte/verrines.jpg" alt="">
+                    <img src="Image/carte/planche.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Verrine fraise-menthe
+                            Planche de charcuterie
                         </div>
                         <div class="description">
-                            Délicieuse verrine de fraise dans une crème fouettée accompagnée de quelques feuilles de menthe
+                            Assortiments de différentes charcuteries
                         </div>
                         <div class="prix">
-                            8.00
+                            10.50
                         </div>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="Image/carte/brownie.jpg" alt="">
+                    <img src="Image/carte/salade.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Brownie au chocolat
+                            Salade oeuf au plat
                         </div>
                         <div class="description">
-                            Brownie aux pépites de chocolat et à la framboise
+                            description
                         </div>
                         <div class="prix">
-                            6.50
+                            prix
                         </div>
                     </div>
                 </div>
