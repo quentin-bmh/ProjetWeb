@@ -1,3 +1,9 @@
+body{
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
 
 .container_avis {
   font-family: Arial, sans-serif;
