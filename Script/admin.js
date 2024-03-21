@@ -1,4 +1,4 @@
-window.onload = function(){
+/*window.onload = function(){
     var listeRes = document.getElementById("table-res").getElementsByTagName("tr");
     for(let i = 0 ; i < listeRes.length ; i++){
         listeRes[i].onclick = function(){
@@ -9,4 +9,4 @@ window.onload = function(){
             //alert("<?php?>");
         }
     }
-}
+}*/

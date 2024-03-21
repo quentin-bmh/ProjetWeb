@@ -14,17 +14,19 @@ let isChecked = false;
 
     function toggleChecked() {
       const listeContact = document.getElementById('listeCo');
-      const logoContact = document.getElementById('img');
+      const logoContact = document.getElementById('contact');
       
       if (isChecked) {
         console.log("imageDéCliquée");
         listeContact.classList.add("hidden");
-        logoContact.classList.remove("animationTremblement");
+        logoContact.classList.remove("phone");
+        //logoContact.classList.add("animationTremblement");
 
       } else {
         console.log("imageCliquée");
         listeContact.classList.remove("hidden");
-        logoContact.classList.add("animationTremblement");
+        //logoContact.classList.remove("animationTremblement");
+        logoContact.classList.add("phone");
 
       }
       isChecked = !isChecked;
