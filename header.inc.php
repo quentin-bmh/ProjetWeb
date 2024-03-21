@@ -31,8 +31,7 @@
             <a href="index.php">Accueil</a>
             <a href="carte.php">Cartes</a>
             <a href="reservation.php">Réservation</a>
-            <a href="avis.php">Livre d'or</a>
-            <a href="">Nous contacter</a>
+            <a href="avis.php">Avis</a>
         </div>
     </div>
     <a id="connexion" onclick="showConnection()">
