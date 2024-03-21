@@ -64,17 +64,21 @@
             $tri = $_GET['tri'] ?? 'Bon Avis';
 
             switch ($tri) {
-                case '':
+                case 'bon':
                     $sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
                     break;
-                case 'Bas Avis':
+                case 'mauvais':
                     $sql = 'SELECT * FROM avis ORDER BY note ASC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note ASC';
                     break;
                 case 'Ancien':
                     $sql = 'SELECT * FROM avis ORDER BY date ASC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
                     break;
                 case 'Récent':
                     $sql = 'SELECT * FROM avis ORDER BY date DESC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
                     break;
                 default:
                     $sql = 'SELECT * FROM avis ORDER BY note DESC';
@@ -84,13 +88,16 @@
             $maTableStatement = $mysqlConnection->prepare($sql);
             $maTableStatement->execute();
             $donnees = $maTableStatement->fetchAll();
+
+            //$maTableStatement = $mysqlConnection->prepare('SELECT * FROM compte AS c INNER JOIN avis AS a ON c.mail== ');
+
         ?>
         </div>
         <div>
             <label for="tri">Trier par:</label>
             <select id="tri" onchange="trierDonnees()">
-                <option value="Bon Avis" <?php if ($tri == 'Bon Avis') echo 'selected'; ?>>Bon Avis</option>
-                <option value="Bas Avis" <?php if ($tri == 'Bas Avis') echo 'selected'; ?>>Bas Avis</option>
+                <option value="bon" <?php if ($tri == 'bon') echo 'selected'; ?>>Bon</option>
+                <option value="mauvais" <?php if ($tri == 'mauvais') echo 'selected'; ?>>Mauvais</option>
                 <option value="Ancien" <?php if ($tri == 'Ancien') echo 'selected'; ?>>Ancien</option>
                 <option value="Récent" <?php if ($tri == 'Récent') echo 'selected'; ?>>Récent</option>
             </select>
@@ -135,6 +142,11 @@
                     $note = $_POST['rating'];
                     $avis = $_POST['reviewText'];
 
+                    /*
+                    $mail = $_SESSION['mail'];
+                    $sqlQuery= 'INSERT INTO avis (mail,note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
+                    $insertRequete->execute(['mail' => $mail,'note' => $note,'avis' => $avis]);
+                    */
                     $sqlQuery= 'INSERT INTO avis (note, avis, date) VALUES (:note, :avis, CURRENT_DATE())';
                     $insertRequete = $mysqlConnection->prepare($sqlQuery);
                     $insertRequete->execute([
@@ -147,12 +159,14 @@
             
         <div>
             <?php
+                //var_dump($donnees);
                 foreach ($donnees as $resultat) {
+                    
                     echo "<div class='personne'>";
-                    //echo "<p>Prénom: {$resultat['prenom']}</p>";
-                    echo "<p>Commentaire: {$resultat['avis']}</p>";
-                    echo "<p>Date: {$resultat['date']}</p>";
-                    echo "<p>Note: {$resultat['note']}</p>";
+                    echo "<div class='prenom'>Prénom: {$resultat['prenom']}</div>";
+                    echo "<div class='commentaire'>Commentaire: {$resultat['avis']}</div>";
+                    echo "<div class='date'>Date: {$resultat['date']}</div>";
+                    echo "<div class='note'>Note: {$resultat['note']}</div>";
                     echo "</div>";
                 }
             ?>
