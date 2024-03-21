@@ -129,20 +129,20 @@
                 <input type="submit" value="Envoyer l'avis">
             </form>
         </div>
-        <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                $note = $_POST['rating'];
-                $avis = $_POST['reviewText'];
+                    $note = $_POST['rating'];
+                    $avis = $_POST['reviewText'];
 
-                $sqlQuery= 'INSERT INTO avis(note, avis) VALUES (:note, :avis)';
-                $insertRequete = $mysqlConnection->prepare($sqlQuery);
-                $insertRequete->execute([
-                    'note' => $note,
-                    'avis' => $avis
-                ]);
-            }
-        ?>
+                    $sqlQuery= 'INSERT INTO avis (note, avis, date) VALUES (:note, :avis, CURRENT_DATE())';
+                    $insertRequete = $mysqlConnection->prepare($sqlQuery);
+                    $insertRequete->execute([
+                        'note' => $note,
+                        'avis' => $avis
+                    ]);
+                }
+            ?>
         </div>
             
         <div>
