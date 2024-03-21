@@ -11,8 +11,8 @@ if(isset($_POST['submit'])) {
             $hours = $_POST['hour'];
             $days = $_POST['day'];
 
-            $sql = $bdd->prepare('INSERT INTO reservation(day, hour, name, mail, phone, nbrPers) VALUES (:day, :hour, :nom, :email, :phone, :nbrPers)');
-            $sql->execute(['day' => $days, 'hour' => $hours, 'nom' => $nom, 'email' => $email, 'phone' => $phone, 'nbrPers' => $nbrPers]);
+            $sql = $bdd->prepare('INSERT INTO Reservation(mail, date, nbPers, heure) VALUES (:email, :day, :nbrPers, :hour)');
+            $sql->execute(['email' => $email, 'day' => $days, 'nbrPers' => $nbrPers, 'hour' => $hours]);
             echo "<script>alert('Réservation effectuée avec succès !');</script>";
 
             // Envoi d'un e-mail
@@ -45,6 +45,7 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
