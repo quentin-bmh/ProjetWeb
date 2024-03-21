@@ -13,9 +13,7 @@
     try{
         $mysqlConnection = new PDO(
             'mysql:host=localhost;dbname=projetweb;charset=utf8',
-            'root',
-            ''
-        );
+            'root', '', [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION],);  
     }
     catch (Exception $e){
         var_dump('Erreur : ' . $e->getMessage());
@@ -134,27 +132,15 @@
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                $mysqlConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $note = $_POST['rating'];
+                $avis = $_POST['reviewText'];
 
-                if (isset($_POST['reviewText']) && isset($_POST['rating']) && !empty($_POST['reviewText']) && !empty($_POST['rating'])) {
-
-                    $reviewText = $_POST['reviewText'];
-                    $rating = $_POST['rating'];
-
-                    try {
-                        $stmt = $mysqlConnection->prepare("INSERT INTO avis (reviewText, rating) VALUES (:reviewText, :rating)");
-                        $stmt->bindParam(':reviewText', $reviewText);
-                        $stmt->bindParam(':rating', $rating);
-
-                        $stmt->execute();
-
-                        echo "Avis ajouté avec succès!";
-                    } catch (PDOException $e) {
-                        echo "Erreur: " . $e->getMessage();
-                    }
-                } else {
-                    echo "Tous les champs doivent être remplis!";
-                }
+                $sqlQuery= 'INSERT INTO avis(note, avis) VALUES (:note, :avis)';
+                $insertRequete = $mysqlConnection->prepare($sqlQuery);
+                $insertRequete->execute([
+                    'note' => $note,
+                    'avis' => $avis
+                ]);
             }
         ?>
         </div>
