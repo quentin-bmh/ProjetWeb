@@ -56,28 +56,42 @@
         </div>
     </div>
     <img id="connexion" src="Image/profilPicture.jpg" alt="" onclick="showProfil()">
-    <div class="profil hidden" id="profil" >
-        <h4>prenom</h4>
-        <h4>nom</h4>
-        <h4>mail</h4>
-        <h4>telephone</h4>
-        <a style="display:<?php
+    <div style='display:<?php
                     if(isset($_SESSION['mail'])) {  
                         echo 'block';
                     } else {
                         echo 'none';
                     }
-                ?>" href="logout.php"><button class="btnLogout">Log Out</button>
-        </a>        
-    </div>
-    <script>
-        function showProfil() {
-            var profilDiv = document.getElementById('profil');
-            profilDiv.classList.toggle("hidden");
+                    echo "'class='profil hidden' id='profil'>";
+        if(isset($_SESSION['mail'])) {
+            try{
+                $mysqlConnection = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8','root', '', [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION],);
+            }
+            catch (Exception $e){
+                var_dump('Erreur : ' . $e->getMessage());
+            }
+            $maTableStatement = $mysqlConnection->prepare("SELECT * FROM compte WHERE mail=:mail");
+            $maTableStatement->execute(["mail"=>$_SESSION['mail']]);
+            $donnees = $maTableStatement->fetchAll()[0];
+            echo $donnees['mail']."<br/>";
+            echo $donnees['nom']."<br/>";
+            echo $donnees['prenom']."<br/>";
+            echo $donnees['tel']."<br/>";
+            //echo "<div class='bonjour'>Bienvenue {$resultat['prenom']}</div>";
         }
-    </script>
+        ?>
+        <a href="logout.php"><button class="btnLogout">Log Out</button></a>        
+    </div>
     
-    <div class="formConnection" id="form" hidden>
+    
+    <div style="display:<?php
+                    if(isset($_SESSION['mail'])) {  
+                        echo 'none';
+                    } else {
+                        echo 'block';
+                    }
+                ?>"
+                class="formConnection hidden" id="form" hidden>
         <div class="container" id="Login">
             <div class="box form-box">
                 <?php
@@ -136,23 +150,23 @@
                 <form action="" method="post">
                     <div class="field input">
                         <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="username" autocomplete="off" required>
+                        <input type="text" name="nom" autocomplete="off" required>
                     </div>
                     <div class="field input">
                         <label for="prenom">Prenom</label>
-                        <input type="text" name="prenom" id="username" autocomplete="off" required>
+                        <input type="text" name="prenom" autocomplete="off" required>
                     </div>
                     <div class="field input">
                         <label for="tel">Telephone</label>
-                        <input type="text" name="tel" id="username" autocomplete="off" required>
+                        <input type="text" name="tel" autocomplete="off" required>
                     </div>
                     <div class="field input">
                         <label for="mail">Email</label>
-                        <input type="text" name="mail" id="email" autocomplete="off" required>
+                        <input type="text" name="mail" autocomplete="off" required>
                     </div>
                     <div class="field input">
                         <label for="mdp">Mot de passe</label>
-                        <input type="password" name="mdp" id="password" autocomplete="off" required>
+                        <input type="password" name="mdp" autocomplete="off" required>
                     </div>
 
                     <div class="field">

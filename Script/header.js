@@ -9,6 +9,12 @@ function verifierCheckbox() {
   }
 }
 
+function showProfil() {
+  var profilDiv = document.getElementById('profil');
+  var from = document.getElementById('form');
+  profilDiv.classList.toggle("hidden");
+  from.classList.toggle("hidden");
+}
 
 let isChecked = false;
 
@@ -39,16 +45,4 @@ let isChecked = false;
       connexionSection.classList.toggle('hidden');
   }
 
-  var profilClique = false;
-
-    function showProfil() {
-        var form = document.getElementById('profil');
-        profilClique = !profilClique;
-        if (profilClique) {
-            form .classList.toggle("hidden");
-            console.log('profil cliqué');
-        } else {
-            form.classList.toggle("hidden");
-            console.log('profil pas cliqué');
-        }
-    }
+  

@@ -268,11 +268,11 @@ header .btn {
   margin-left: 25%;
   margin-right: 25%;
 }
-/*
+
 header .btnLogout {
   height: 35px;
   width: 100px;
-  background: rgba(76, 68, 182, 0.808);
+  background: rgb(123, 13, 220);
   border: 0;
   border-radius: 5px;
   color: #fff;
@@ -283,21 +283,22 @@ header .btnLogout {
   margin: 10px, 0px, 0%, 50px;
   padding: 0px 10px;
 }
-*/
+
 header .hidden {
-  display: none;
+  display: none!important;
 }
-/*
+
 header .profil{
-  width: 50px;
-  height: 50px;
+  width: 200px;
+  height: 100px;
   position: absolute;
-  right: 0%;
-  top: 4%;   
+  top: 4%;
+  top:calc(15vh / 2 + 100px);
+  left:calc(100% - 250px);
   z-index: 1;
-  margin-left: 47%;
+  background-color: red;
 }
-*/
+
 header #connexion{
   width: 60px;
   border-radius: 9999px;  
@@ -305,5 +306,6 @@ header #connexion{
   position:absolute;
   left:calc(100% - 85px);
   top:calc(15vh / 2 - 60px / 2 - 20px);
+  z-index: 2;
 }
 
