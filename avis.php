@@ -74,11 +74,11 @@
                     break;
                 case 'Ancien':
                     //$sql = 'SELECT * FROM avis ORDER BY date ASC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
                     break;
                 case 'Récent':
                     //$sql = 'SELECT * FROM avis ORDER BY date DESC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
                     break;
                 default:
                     //$sql = 'SELECT * FROM avis ORDER BY note DESC';
@@ -104,10 +104,17 @@
             </select>
         </div>
         <div>
-            <input style="display:<?php echo'block';?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
+            <input style="display:
+                 <?php
+                    if(isset($_SESSION['mail'])) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
+                        echo 'none';               //alors une session a été crée
+                    } else {
+                        echo 'block';
+                    }
+                ?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
             <input style="display:
                 <?php
-                    if(isset($_SESSION)) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
+                    if(isset($_SESSION['mail'])) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
                         echo 'block';               //alors une session a été crée
                     } else {
                         echo 'none';
@@ -136,22 +143,23 @@
             </form>
         </div>
             <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rating']) && isset($_POST['reviewText'])) {
                     $note = $_POST['rating'];
                     $avis = $_POST['reviewText'];
-
+                    $mail = $_SESSION['mail'];
                     /*
                     $mail = $_SESSION['mail'];
                     $sqlQuery= 'INSERT INTO avis (mail,note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
                     $insertRequete->execute(['mail' => $mail,'note' => $note,'avis' => $avis]);
                     */
-                    $sqlQuery= 'INSERT INTO avis (note, avis, date) VALUES (:note, :avis, CURRENT_DATE())';
+                    $sqlQuery= 'INSERT INTO avis (mail, note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
                     $insertRequete = $mysqlConnection->prepare($sqlQuery);
                     $insertRequete->execute([
+                        'mail' => $mail,
                         'note' => $note,
                         'avis' => $avis
                     ]);
+                    echo "<script>window.location.href = 'avis.php';</script>";
                 }
             ?>
         </div>
