@@ -104,8 +104,6 @@
         </div>
         <div>
             <input style="display:<?php echo'block';?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
-            <input type="submit" id="ajouterAvis" value="Ajouter un Avis">
-
             <input style="display:
                 <?php
                     if(isset($_SESSION)) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
