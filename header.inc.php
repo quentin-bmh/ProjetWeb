@@ -55,9 +55,27 @@
             ?>
         </div>
     </div>
-    <a id="connexion" onclick="showConnection()">
-        <img src="Image/profilPicture.jpg" alt="">
-    </a>
+    <img id="connexion" src="Image/profilPicture.jpg" alt="" onclick="showProfil()">
+    <div class="profil hidden" id="profil" >
+        <h4>prenom</h4>
+        <h4>nom</h4>
+        <h4>mail</h4>
+        <h4>telephone</h4>
+        <a style="display:<?php
+                    if(isset($_SESSION['mail'])) {  
+                        echo 'block';
+                    } else {
+                        echo 'none';
+                    }
+                ?>" href="logout.php"><button class="btnLogout">Log Out</button>
+        </a>        
+    </div>
+    <script>
+        function showProfil() {
+            var profilDiv = document.getElementById('profil');
+            profilDiv.classList.toggle("hidden");
+        }
+    </script>
     
     <div class="formConnection" id="form" hidden>
         <div class="container" id="Login">

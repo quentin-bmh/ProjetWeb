@@ -39,13 +39,16 @@ let isChecked = false;
       connexionSection.classList.toggle('hidden');
   }
 
-  function showConnection() {
-    var form = document.getElementById('form');
-    if (form.hasAttribute('hidden')) {
-        form.removeAttribute('hidden');
-        console.log("Form shown");
-    } else {
-        form.setAttribute('hidden', true);
-        console.log("Form hidden");
+  var profilClique = false;
+
+    function showProfil() {
+        var form = document.getElementById('profil');
+        profilClique = !profilClique;
+        if (profilClique) {
+            form .classList.toggle("hidden");
+            console.log('profil cliqué');
+        } else {
+            form.classList.toggle("hidden");
+            console.log('profil pas cliqué');
+        }
     }
-}

@@ -144,8 +144,8 @@ header #contact{
   position: relative;
   left: 10px;
   position: absolute;
-  left:calc(100% - 120px);
-  top:calc(15vh / 2 - 20px / 2);
+  left:calc(100% - 170px);
+  top:calc(15vh / 2 - 20px / 2 - 20px);
   height: 20px;
   transition: all 0.5s ease;
 }
@@ -166,7 +166,7 @@ header #contact{
 }*/
 
 header .phone{
-  transform: translateY(-10px) translateX(0px) rotate(140deg);
+  transform: translateY(0px) translateX(10px) rotate(140deg);
 }
 
 header .listeContact{
@@ -177,8 +177,8 @@ header .listeContact{
   background-color: black;
   border-radius: 5%;
   position: absolute;
-  left:calc(100% - 300px);
-  top:calc(15vh - 30px);
+  left:calc(100% - 330px);
+  top:calc(15vh - 60px);
 }
 header .listeContact a{
   text-decoration: none;
@@ -189,17 +189,20 @@ header .listeContact a{
 header .hidden{
   display: none;
 }
+/*
 header #connexion{
   position: absolute;
   top: -20px;
   left: calc(100% - 50px);
 }
+
 header #connexion img{
   width: 50px;
   height: 50px;
   border-radius: 9999px;  
   border: solid 5px rgb(123, 13, 220);
 }
+*/
 header .container {
   display: flex;
   align-items: center;
@@ -265,7 +268,7 @@ header .btn {
   margin-left: 25%;
   margin-right: 25%;
 }
-
+/*
 header .btnLogout {
   height: 35px;
   width: 100px;
@@ -280,23 +283,27 @@ header .btnLogout {
   margin: 10px, 0px, 0%, 50px;
   padding: 0px 10px;
 }
-
+*/
 header .hidden {
   display: none;
 }
-
+/*
 header .profil{
   width: 50px;
   height: 50px;
   position: absolute;
   right: 0%;
-  top: 4%;
-  z-index: -1;
-  background-color: blueviolet;
+  top: 4%;   
+  z-index: 1;
   margin-left: 47%;
 }
-
-header #connexion:hover + .profil {
-  transform: translateY(30px);
-  transition: transform 0.3s ease-out;
+*/
+header #connexion{
+  width: 60px;
+  border-radius: 9999px;  
+  border: solid 5px rgb(123, 13, 220);
+  position:absolute;
+  left:calc(100% - 85px);
+  top:calc(15vh / 2 - 60px / 2 - 20px);
 }
+
