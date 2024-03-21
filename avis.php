@@ -65,23 +65,24 @@
 
             switch ($tri) {
                 case 'bon':
-                    $sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    //$sql = 'SELECT * FROM avis ORDER BY note DESC';
                     $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
                     break;
                 case 'mauvais':
-                    $sql = 'SELECT * FROM avis ORDER BY note ASC';
+                    //$sql = 'SELECT * FROM avis ORDER BY note ASC';
                     $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note ASC';
                     break;
                 case 'Ancien':
-                    $sql = 'SELECT * FROM avis ORDER BY date ASC';
+                    //$sql = 'SELECT * FROM avis ORDER BY date ASC';
                     $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
                     break;
                 case 'Récent':
-                    $sql = 'SELECT * FROM avis ORDER BY date DESC';
+                    //$sql = 'SELECT * FROM avis ORDER BY date DESC';
                     $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
                     break;
                 default:
-                    $sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    //$sql = 'SELECT * FROM avis ORDER BY note DESC';
+                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
                     break;
             }
 
