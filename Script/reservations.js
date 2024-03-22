@@ -4,7 +4,7 @@ function ValiderFormulaire() {
     var phone = document.getElementById('phone').value.trim();
     var nombre_personnes = document.getElementById('nbrPers').value.trim();
     var heure_selectionnee = document.getElementById('hour').value;
-    var day_selectionnee = document.getElementById('date').value;
+    var date_selectionnee = document.getElementById('date').value; // Correction ici
 
     var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -20,7 +20,7 @@ function ValiderFormulaire() {
         alert("Veuillez entrer un numéro de téléphone valide (10 chiffres, commençant par 0).");
         return false;
     }
-    if (nombre_personnes === '' ) {
+    if (nombre_personnes === '') {
         alert("Veuillez indiquer le nombre de personnes (minimum 1).");
         return false;
     }
@@ -28,7 +28,7 @@ function ValiderFormulaire() {
         alert("Veuillez sélectionner une heure.");
         return false;
     }
-    if (date_selectionnee === 'date-select') {
+    if (date_selectionnee === '') { // Correction ici
         alert("Veuillez sélectionner un jour.");
         return false;
     }

@@ -37,9 +37,10 @@
                     echo "<tr>";
                     //echo "<tr data-id='".$line["id"].""."'>";
                     echo "<td>DATE</td>";
-                    echo "<td>".$line['hour']."</td>";
-                    echo "<td>".$line['nbrPers']." pers</td>";
-                    echo "<td>".$line['name']."</td>";
+                    echo "<td>".$line['heure']."</td>";
+                    echo "<td>".$line['nbPers']." pers</td>";
+                    //echo "<td>".$line['nom']."</td>";
+                    echo "<td>prenom</td>";
                     echo "<td>".$line['mail']."</td>";
                     echo "<td><a href='admin.php?del=".$line["id"]."'>"."X"."</a></td>";
                     echo "</tr>";
@@ -57,6 +58,7 @@
                     $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '');
                     $sql = $bdd->prepare("DELETE FROM Reservation WHERE id=:id");
                     $sql->execute(['id'=>$id]);
+                    echo "<script>window.location.href = 'admin.php';</script>";
                 }
                 catch(Exeption $e){
                     dd('Erreur : ' . $e->getMessage());

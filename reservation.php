@@ -100,7 +100,7 @@ if(isset($_POST['submit'])) {
                                         <div class="form-row">
                                             <input type="text" placeholder="Nom" id="name" name="nom" value="<?php echo $donnees['nom']; ?>" required>
                                             <input type="text" placeholder="Téléphone" id="phone" name="phone" value="<?php echo $donnees['tel']; ?>" required>
-                                            <input type="email" placeholder="Mail" id="mail" name="email" value="<?php echo $_SESSION['mail']; ?>" required disabled>
+                                            <input type="email" placeholder="Mail" id="mail" name="email" value="<?php echo $_SESSION['mail']; ?>" disabled>
                                         </div>
                                         <div class="form-row">
                                             <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbrPers" name="nbrPers">
