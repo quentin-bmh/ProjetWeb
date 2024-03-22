@@ -111,7 +111,7 @@ if(isset($_POST['submit'])) {
                             </div>
                         </section>
                     </div>
-                    <div>
+                    <div class='mesReservations'>
                         <?php
                             $maTableStatement = $mysqlConnection->prepare("SELECT * FROM reservation WHERE mail=:mail");
                             $maTableStatement->execute(["mail"=>$_SESSION['mail']]);

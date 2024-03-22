@@ -112,7 +112,7 @@
                     } else {
                         echo 'block';
                     }
-                ?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" />
+                ?>" type="submit" id="seConnecter" value="Se connecter pour ajouter un Avis" onclick="showProfil()"/>
             <input style="display:
                 <?php
                     if(isset($_SESSION['mail'])) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
