@@ -130,12 +130,19 @@
                 </div>
                 <div>
                     <label for="rating">Votre note :</label><br>
-                    <div class="stars" onclick="selectRating(event)">
-                        <span class="star" data-value="1"></span>
-                        <span class="star" data-value="2"></span>
-                        <span class="star" data-value="3"></span>
-                        <span class="star" data-value="4"></span>
-                        <span class="star" data-value="5"></span>
+                    <div class="stars" onclick="selectRating(event)"> 
+                        <div class="rating">
+                            <input value="5" name="rate" id="star5" type="radio">
+                            <label title="text" for="star5"></label>
+                            <input value="4" name="rate" id="star4" type="radio">
+                            <label title="text" for="star4"></label>
+                            <input value="3" name="rate" id="star3" type="radio" checked="">
+                            <label title="text" for="star3"></label>
+                            <input value="2" name="rate" id="star2" type="radio">
+                            <label title="text" for="star2"></label>
+                            <input value="1" name="rate" id="star1" type="radio">
+                            <label title="text" for="star1"></label>
+                        </div>
                     </div>
                     <input type="hidden" id="rating" name="rating" value="0">
                 </div>
@@ -143,8 +150,8 @@
             </form>
         </div>
             <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rating']) && isset($_POST['reviewText'])) {
-                    $note = $_POST['rating'];
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rate']) && isset($_POST['reviewText'])) {
+                    $note = $_POST['rate'];
                     $avis = $_POST['reviewText'];
                     $mail = $_SESSION['mail'];
                     /*
@@ -163,7 +170,7 @@
                 }
             ?>
         </div>
-            
+        
         <div>
             <?php
                 //var_dump($donnees);
