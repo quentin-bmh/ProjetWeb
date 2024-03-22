@@ -1,12 +1,23 @@
 window.onload = function(){
     var menu = document.getElementById("menu");
+
+    var entreeMenu = document.getElementById("entree-menu");
+    var platMenu = document.getElementById("plat-menu");
+    var dessertMenu = document.getElementById("dessert-menu");
+    
     var carte = document.getElementById("carte");
 
     var sections = menu.getElementsByClassName("section");
-    var sectionsCarte = Array.from(carte.getElementsByClassName("section"));
+    //var sectionsCarte = Array.from(carte.getElementsByClassName("section"));
     var scroll = 0;
     var gap = 0;
-    var centre = 1
+    var centre = 1;
+    var sectionsCarte;
+
+    var boissons = document.getElementById("boissons");
+    var entrees = document.getElementById("entrees");
+    var plats = document.getElementById("plats");
+    var desserts = document.getElementById("desserts");
 
     function isPortrait() {
         return window.matchMedia("(orientation: portrait)").matches;
@@ -94,6 +105,17 @@ window.onload = function(){
         }
         moveSlides();
     }
+
+    sections[0].onclick = function(){
+        sectionsCarte = [boissons, entrees, plats, desserts];
+    }
+    sections[1].onclick = function(){
+        sectionsCarte = [entrees, plats, desserts, boissons];
+    }
+    sections[2].onclick = function(){
+        sectionsCarte = [plats, desserts, boissons, entrees];
+    }
+
     carte.onwheel = function(event){
         scroll += event.deltaY;
         moveSlides()
