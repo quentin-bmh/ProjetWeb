@@ -4,7 +4,7 @@ function ValiderFormulaire() {
     var phone = document.getElementById('phone').value.trim();
     var nombre_personnes = document.getElementById('nbrPers').value.trim();
     var heure_selectionnee = document.getElementById('hour').value;
-    var day_selectionnee = document.getElementById('day').value;
+    var day_selectionnee = document.getElementById('date').value;
 
     var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,7 +28,7 @@ function ValiderFormulaire() {
         alert("Veuillez sélectionner une heure.");
         return false;
     }
-    if (day_selectionnee === 'day-select') {
+    if (date_selectionnee === 'date-select') {
         alert("Veuillez sélectionner un jour.");
         return false;
     }

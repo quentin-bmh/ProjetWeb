@@ -3,17 +3,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '')
 
 if(isset($_POST['submit'])) {
     try {
-        if(!empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['phone']) && !empty($_POST['nbrPers']) && !empty($_POST['hour']) && !empty($_POST['day'])) {
+        if(!empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['phone']) && !empty($_POST['nbrPers']) && !empty($_POST['hour']) && !empty($_POST['date'])) {
             $nom = $_POST['nom'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
             $nbrPers = $_POST['nbrPers'];
             $hours = $_POST['hour'];
-            $days = $_POST['day'];
+            $days = $_POST['date'];
 
             $sql = $bdd->prepare('INSERT INTO Reservation(mail, date, nbPers, heure) VALUES (:email, :day, :nbrPers, :hour)');
             $sql->execute(['email' => $email, 'day' => $days, 'nbrPers' => $nbrPers, 'hour' => $hours]);
-            echo "<script>alert('Réservation effectuée avec succès !');</script>";
+            
+            echo "<script>window.location.href = 'reservation.php';</script>";
+            //echo "<script>alert('Réservation effectuée avec succès !');</script>";
 
             // Envoi d'un e-mail
             /*
@@ -58,49 +60,74 @@ if(isset($_POST['submit'])) {
 </head>
 <body>
     <?php include 'header.inc.php'; ?>
-    <section class="banner">
-        <h2>Reservez votre table!!</h2>
-        <div class="card-container">
-            <div class="card-content">
-                <h3>Reservation</h3>
-                <form action="" method="post" onsubmit="return ValiderFormulaire()">
-                    <div class="form-row">
-                        <select name="day" id="day">
-                            <option value="day-select">Sélectionnez le jour</option>
-                            <option value="sunday">Lundi</option>
-                            <option value="monday">Mardi</option>
-                            <option value="tuesday">Mercredi</option>
-                            <option value="wednesday">Jeudi</option>
-                            <option value="thursday">Vendredi</option>
-                            <option value="friday">Samedi</option>
-                            <option value="saturday">Dimanche</option>
-                        </select>
-
-                        <select name="hour" id="hour">
-                            <option value="hour-select">Selectionnez une heure</option>
-                            <option disabled="disabled">--------------</option>
-                            <option disabled="disabled">Service midi:</option>
-                            <option value="12">12h/13h</option>
-                            <option value="13">13h/14h</option>
-                            <option disabled="disabled">--------------</option>
-                            <option disabled="disabled">Service soir:</option>
-                            <option value="19">19h/20h</option>
-                            <option value="20">20h/21h</option>
-                            <option value="21">21h/22h</option>
-                        </select>
+    <div>
+            <input style="display:
+                 <?php
+                    if(isset($_SESSION['mail'])) {  //définir $_SESSION lorsqu'on se connecte||isset vérif que c'est défini||si ça l'est
+                        echo 'none';                //alors une session a été crée
+                    } else {
+                        echo 'block';                        
+                    }
+                ?>" type="submit" id="seConnecter" value="Se connecter pour pouvoir réserver" onclick="showProfil()" />
+                </div>
+                <?php if(isset($_SESSION['mail'])) {
+                    $maTableStatement = $mysqlConnection->prepare("SELECT * FROM compte WHERE mail=:mail");
+                    $maTableStatement->execute(["mail"=>$_SESSION['mail']]);
+                    $donnees = $maTableStatement->fetchAll()[0];
+                    ?>
+                    <div class='envoyerReservation' id='envoyerReservation'>
+                        <section class="banner">
+                            <h2>Reservez votre table!!</h2>
+                            <div class="card-container">
+                                <div class="card-content">
+                                    <h3>Reservation</h3>
+                                    <form action="" method="post" onsubmit="return ValiderFormulaire()">
+                                        <div class="form-row">
+                                        <input type="date" id="date" name="date">
+                                            <select name="hour" id="hour">
+                                                <option value="hour-select">Selectionnez une heure</option>
+                                                <option disabled="disabled">--------------</option>
+                                                <option disabled="disabled">Service midi:</option>
+                                                <option value="12">12h/13h</option>
+                                                <option value="13">13h/14h</option>
+                                                <option disabled="disabled">--------------</option>
+                                                <option disabled="disabled">Service soir:</option>
+                                                <option value="19">19h/20h</option>
+                                                <option value="20">20h/21h</option>
+                                                <option value="21">21h/22h</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-row">
+                                            <input type="text" placeholder="Nom" id="name" name="nom" value="<?php echo $donnees['nom']; ?>" required>
+                                            <input type="text" placeholder="Téléphone" id="phone" name="phone" value="<?php echo $donnees['tel']; ?>" required>
+                                            <input type="email" placeholder="Mail" id="mail" name="email" value="<?php echo $_SESSION['mail']; ?>" required disabled>
+                                        </div>
+                                        <div class="form-row">
+                                            <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbrPers" name="nbrPers">
+                                            <input type="submit" value="Réserver la table" name="submit">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="form-row">
-                        <input type="text" placeholder="Nom" id="name" name="nom">
-                        <input type="text" placeholder="Telephone" id="phone" name="phone">
-                        <input type="email" placeholder="Mail" id="mail" name="email">
+                    <div>
+                        <?php
+                            $maTableStatement = $mysqlConnection->prepare("SELECT * FROM reservation WHERE mail=:mail");
+                            $maTableStatement->execute(["mail"=>$_SESSION['mail']]);
+                            $donnees = $maTableStatement->fetchAll();
+                            var_dump($donnees);
+                            foreach ($donnees as $resultat) {
+                                echo "<div class='réservation'>";
+                                echo "<div class='jour'>Jour: {$resultat['date']}</div>";
+                                echo "<div class='heure'>Heure: {$resultat['heure']}</div>";
+                                echo "<div class='nbPers'>nbPers: {$resultat['nbPers']}</div>";
+                                echo "</div>";
+                            }
+                        ?>
                     </div>
-                    <div class="form-row">
-                        <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbrPers" name="nbrPers">
-                        <input type="submit" value="Réserver la table" name="submit">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-</body>
+                <?php 
+                } 
+            ?>
+    </body>
 </html>

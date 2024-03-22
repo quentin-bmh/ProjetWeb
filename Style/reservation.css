@@ -10,9 +10,17 @@ body {
     width: 100%;    
     background-size: cover;
     background-position: center;
-    background-image: url('../Image/reservation.jpeg');
-  
+    /*background-image: url('../Image/reservation.jpeg');*/
 }
+
+#seConnecter, #ajouterReservation{
+    background-color: #f2745f;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh;
+}
+
 .banner{
     min-height: 100vh;
     display: flex;
@@ -53,7 +61,7 @@ body {
     width: 90%;
     margin: 0 auto;
 }
-form select, form input{
+.banner form select, .banner form input{
     display: block;
     width: 100%;
     margin: 15px 12px;
@@ -64,6 +72,12 @@ form select, form input{
     border: none;
     border-bottom: 1px solid #eee;
     font-weight: 300;
+}
+
+
+input[type="email"]:disabled {
+    background-color: inherit;
+    border-bottom: none;
 }
 form input[type = text], form input[type = number], form input::placeholder, select{
     color: #9a9a9a;

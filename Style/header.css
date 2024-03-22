@@ -12,6 +12,9 @@ header{
   opacity: 1;
   transition: all 0.4s ease-in-out;
 }
+a:active{
+  color:rgb(123, 13, 220);
+}
 
 header:hover{
   opacity: 1;
@@ -211,10 +214,11 @@ header .container {
   width: fit-content;
   height: fit-content;
   margin: auto;
-  margin-top: 5vh;
+  margin-top: 15vh;
 }
 header .box {
-  background: #fdfdfd;
+  background: #fdfdfd77;
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   padding: 25px 25px;
@@ -236,6 +240,11 @@ header .titre{
   font-size: 50px;
 }
 
+/*
+#form, #SignUp{
+  background-color: red;
+}
+*/
 header .form-box form .field {
   display: flex;
   margin-bottom: 10px;

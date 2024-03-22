@@ -9,11 +9,24 @@ function verifierCheckbox() {
   }
 }
 
+function toggleSection(){
+  var creationSection = document.getElementById('Login');
+  var connexionSection = document.getElementById('SignUp');
+  creationSection.classList.toggle('hidden');
+  connexionSection.classList.toggle('hidden');
+}
+
 function showProfil() {
   var profilDiv = document.getElementById('profil');
+  var signUp = document.getElementById('SignUp');
   var from = document.getElementById('form');
+  if(!signUp.classList.contains('hidden')){
+    toggleSection();
+  }
   profilDiv.classList.toggle("hidden");
   from.classList.toggle("hidden");
+  
+  //signUp.classList.toggle("hidden");
 }
 
 let isChecked = false;
@@ -38,11 +51,5 @@ let isChecked = false;
       isChecked = !isChecked;
     }
 
-    function toggleSection(){
-      var creationSection = document.getElementById('Login');
-      var connexionSection = document.getElementById('SignUp');
-      creationSection.classList.toggle('hidden');
-      connexionSection.classList.toggle('hidden');
-  }
 
   
