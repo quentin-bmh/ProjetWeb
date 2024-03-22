@@ -37,6 +37,9 @@
             <a href="carte.php">Cartes</a>
             <a href="reservation.php">Réservation</a>
             <a href="avis.php">Avis</a>
+            
+            <?php
+            /*
             <a style="display:<?php
                     if(isset($_SESSION['mail'])) {  
                         echo 'block';
@@ -44,7 +47,7 @@
                         echo 'none';
                     }
                 ?>" href="logout.php"><button class="btnLogout">Log Out</button></a>
-            <?php
+            */
             /*
             
             /*

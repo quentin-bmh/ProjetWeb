@@ -10,7 +10,7 @@ body {
     width: 100%;    
     background-size: cover;
     background-position: center;
-    /*background-image: url('../Image/reservation.jpeg');*/
+    background-image: url('../Image/reservation.jpeg');
 }
 
 #seConnecter, #ajouterReservation{

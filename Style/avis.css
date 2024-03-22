@@ -16,11 +16,56 @@ body::-webkit-scrollbar {
   height: 100vh;
 }
 
+.avis{
+  text-align: center;
+  padding: 15px;
+  margin : 15px 0;
+  border : solid 2px black;
+  border-radius: 20px;
+}
+
+.commentaire{
+  font-size: 20px;
+}
+.detail{
+  font-size: 15px;
+}
+.note{
+  font-size: 25px;
+  color: #ffa723;
+}
+
+#recap{
+  width: 70%;
+  column-gap: 20px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: min-content min-content;
+}
+
+#moy{
+  font-size: 100px;
+}
+
+#moy-stars{
+  font-size: 80px;
+  color: #ffa723;
+}
+
+#nb-avis{
+  
+  font-size: 30px;
+}
+
+
+/*
 .personne {
-border: 1px solid #ccc; /* Bordure pour chaque div de personne /
+border: 1px solid #ccc;  Bordure pour chaque div de personne /
 padding: 10px; / Espacement intérieur /
 margin-bottom: 20px; / Marge en bas pour séparer chaque div de personne /
 }
+
 
 .stars {
   unicode-bidi: bidi-override;
@@ -59,9 +104,9 @@ input[type="submit"] {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); / Couleur de fond semi-transparente /
-  z-index: 2; / Assure que le fond de recouvrement est derrière le popup mais devant le reste du contenu */
+  z-index: 2; / Assure que le fond de recouvrement est derrière le popup mais devant le reste du contenu
 }
-
+*/
 input {
   width: 100%;
   padding: 4px;

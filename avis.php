@@ -25,13 +25,22 @@
 
     <div class="container_avis">
     <div class="haut">
-        <div> 
+        <div id="recap"> 
             <?php
                 $maTableStatement = $mysqlConnection->prepare('SELECT AVG(note) AS moyenne_notes FROM avis');
                 $maTableStatement->execute();
                 $resultatRequete = $maTableStatement->fetchAll();
                 $moyenneNotes = $resultatRequete[0]['moyenne_notes'];
-                echo "<p>La note moyenne est $moyenneNotes</p>";
+                $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(*) AS count_prenom FROM avis');
+                $maTableStatement->execute();
+                $resultatRequete = $maTableStatement->fetchAll();
+                $nombreDePrenoms = $resultatRequete[0]['count_prenom'];
+                
+                //echo "<p>La note moyenne est $moyenneNotes</p>";
+                echo "<div id='moy'>".round($moyenneNotes,1)."</div>";
+                echo "<div id='moy-stars'>".getStars(round($moyenneNotes))."</div>";
+                echo "<div id='nb-avis'>".$nombreDePrenoms." avis </div>";
+                /*
                 if ($moyenneNotes >= 0 && $moyenneNotes < 1) {
                     $etoiles = "☆☆☆☆☆";
                 } elseif ($moyenneNotes >= 1 && $moyenneNotes < 2) {
@@ -48,15 +57,7 @@
                     $etoiles = "Erreur : Note invalide";
                 }
                 echo "<p>$etoiles</p>";
-            ?>
-        </div>
-        <div>
-            <?php
-                $maTableStatement = $mysqlConnection->prepare('SELECT COUNT(*) AS count_prenom FROM avis');
-                $maTableStatement->execute();
-                $resultatRequete = $maTableStatement->fetchAll();
-                $nombreDePrenoms = $resultatRequete[0]['count_prenom'];
-                echo "<p>$nombreDePrenoms avis</p>";
+                */
             ?>
         </div>
         <div class="tri">
@@ -169,22 +170,35 @@
                     echo "<script>window.location.href = 'avis.php';</script>";
                 }
             ?>
-        </div>
-        
+            
         <div>
             <?php
+
+                function getStars($n){
+                    $str = "";
+                    for($i = 0 ; $i < 5 ; $i++){
+                        if($i < $n){
+                            $str .= "★";
+                        }else{
+                            $str .= "☆";
+                        }
+                    }
+                    return $str;
+                }
                 //var_dump($donnees);
                 foreach ($donnees as $resultat) {
                     
-                    echo "<div class='personne'>";
-                    echo "<div class='prenom'>Prénom: {$resultat['prenom']}</div>";
-                    echo "<div class='commentaire'>Commentaire: {$resultat['avis']}</div>";
-                    echo "<div class='date'>Date: {$resultat['date']}</div>";
-                    echo "<div class='note'>Note: {$resultat['note']}</div>";
+                    echo "<div class='avis'>";
+                    echo "<div class='commentaire font'>\"".$resultat['avis']."\"</div>";
+                    echo "<div class='detail'>".$resultat['prenom']."  -  ".$resultat['date']."</div>";
+                    echo "<div class='note'>".getStars($resultat['note'])."</div>";
                     echo "</div>";
                 }
+                
             ?>
         </div>
+        </div>
+        
 </body>
 </html> 
 </html>
