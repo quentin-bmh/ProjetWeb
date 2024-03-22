@@ -29,10 +29,10 @@
             <div class="contenu">
                 
                 <div class="item">
-                    <img src="Image/carte/verrines.jpg" alt="">
+                    <img src="Image/carte/negroni.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Verrine fraise-menthe
+                            Negroni
                         </div>
                         <div class="description">
                             Délicieuse verrine de fraise dans une crème fouettée accompagnée de quelques feuilles de menthe
@@ -134,44 +134,16 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="Image/carte/pancacke.jpg" alt="">
+                    <img src="Image/carte/poulet.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Pancake aux myrtilles
+                            Poulet Teriyaki
                         </div>
                         <div class="description">
                             Pancake moelleux aux myrtilles, servi avec du sirop d'érable
                         </div>
                         <div class="prix">
                             7.50
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="Image/carte/smoothie.jpg" alt="">
-                    <div class="details">
-                        <div class="nom">
-                            Smoothie exotique
-                        </div>
-                        <div class="description">
-                            Smoothie rafraîchissant aux fruits exotiques et à la noix de coco
-                        </div>
-                        <div class="prix">
-                            5.50
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="Image/carte/tartelette.jpg" alt="">
-                    <div class="details">
-                        <div class="nom">
-                            Tartelette aux fruits rouges
-                        </div>
-                        <div class="description">
-                            Tartelette garnie de fruits rouges frais et d'une délicieuse crème pâtissière
-                        </div>
-                        <div class="prix">
-                            9.00
                         </div>
                     </div>
                 </div>
@@ -183,72 +155,30 @@
             </div>
             <div class="contenu">
                 <div class="item">
-                    <img src="Image/carte/verrines.jpg" alt="">
+                    <img src="Image/carte/pizza.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Verrine fraise-menthe
+                            Pizza lard et ouefs
                         </div>
                         <div class="description">
                             Délicieuse verrine de fraise dans une crème fouettée accompagnée de quelques feuilles de menthe
                         </div>
                         <div class="prix">
-                            8.00
+                            13.50
                         </div>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="Image/carte/brownie.jpg" alt="">
+                    <img src="Image/carte/burger.jpg" alt="">
                     <div class="details">
                         <div class="nom">
-                            Brownie au chocolat
+                            Burger du chef
                         </div>
                         <div class="description">
                             Brownie aux pépites de chocolat et à la framboise
                         </div>
                         <div class="prix">
                             6.50
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="Image/carte/pancacke.jpg" alt="">
-                    <div class="details">
-                        <div class="nom">
-                            Pancake aux myrtilles
-                        </div>
-                        <div class="description">
-                            Pancake moelleux aux myrtilles, servi avec du sirop d'érable
-                        </div>
-                        <div class="prix">
-                            7.50
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="Image/carte/smoothie.jpg" alt="">
-                    <div class="details">
-                        <div class="nom">
-                            Smoothie exotique
-                        </div>
-                        <div class="description">
-                            Smoothie rafraîchissant aux fruits exotiques et à la noix de coco
-                        </div>
-                        <div class="prix">
-                            5.50
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="Image/carte/tartelette.jpg" alt="">
-                    <div class="details">
-                        <div class="nom">
-                            Tartelette aux fruits rouges
-                        </div>
-                        <div class="description">
-                            Tartelette garnie de fruits rouges frais et d'une délicieuse crème pâtissière
-                        </div>
-                        <div class="prix">
-                            9.00
                         </div>
                     </div>
                 </div>
