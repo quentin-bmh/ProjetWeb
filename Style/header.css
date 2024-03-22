@@ -198,8 +198,8 @@ header .listeContact{
   background-color: black;
   border-radius: 5%;
   position: absolute;
-  left:calc(100% - 330px);
-  top:calc(15vh - 60px);
+  left:calc(100% - 350px);
+  top:calc(15vh - 40px);
 }
 header .listeContact a{
   text-decoration: none;
@@ -239,7 +239,7 @@ header .box {
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  padding: 25px 25px;
+  padding: 25px;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
   /*
@@ -247,6 +247,42 @@ header .box {
   height: fit-content;
   margin: auto;*/
 }
+
+header .profil{
+  position: absolute;
+  top:calc(15vh / 2 + 10px);
+  left:calc(100% - 250px);
+  background: #fdfdfd77;
+  backdrop-filter: blur(8px);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  z-index: 1;
+}
+
+header .btnLogout {
+  height: 35px;
+  width: 100px;
+  background-color: red;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .3s;
+  margin-top: 10px;
+  margin: 10px, 0px, 0%, 50px;
+  padding: 0px 10px;
+}
+
+header .btnLogout:hover{
+  background-color: rgb(255, 56, 56);
+}
+header .btnLogout:active{
+  background-color: rgb(177, 37, 37);
+}
+
+
 
 header .form-box {
   z-index: 4;
@@ -296,6 +332,7 @@ header .btn {
   margin-right: 25%;
 }
 
+/*
 header .btnLogout {
   height: 35px;
   width: 100px;
@@ -310,11 +347,13 @@ header .btnLogout {
   margin: 10px, 0px, 0%, 50px;
   padding: 0px 10px;
 }
+*/
 
 header .hidden {
   display: none!important;
 }
 
+/*
 header .profil{
   width: 200px;
   height: 100px;
@@ -325,6 +364,7 @@ header .profil{
   z-index: 1;
   background-color: red;
 }
+*/
 
 header #connexion{
   width: 60px;
