@@ -18,7 +18,7 @@ window.onload = function(){
     seConnecter = document.getElementById("seConnecter");
     form = document.getElementById("form");
 
-    
+
     ajouterAvis.addEventListener('click', function(){
         //document.body.appendChild(overlay); // Ajoute le fond de recouvrement
         //overlay.style.display = 'block'; // Affiche le fond de recouvrement
