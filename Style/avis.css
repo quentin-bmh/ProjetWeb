@@ -1,13 +1,23 @@
+:root {
+  --star:#ffae00;
+}
+
+#ffff00
 body{
   overflow-x: hidden;
 }
 body::-webkit-scrollbar {
   display: none;
 }
-
+body {
+  height: 100%;
+  width: 100%;    
+  background-size: cover;
+  background-position: center;
+  background-image: url('../Image/reservation.jpeg');
+}
 .container_avis {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
@@ -17,11 +27,14 @@ body::-webkit-scrollbar {
 }
 
 .avis{
+  background: #fdfdfd99;
+  backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px;
   margin : 15px 0;
   border : solid 2px black;
   border-radius: 20px;
+  box-shadow: 0 0 10px black;
 }
 
 .commentaire{
@@ -32,7 +45,7 @@ body::-webkit-scrollbar {
 }
 .note{
   font-size: 25px;
-  color: #ffa723;
+  color: var(--star);
 }
 
 #recap{
@@ -50,7 +63,7 @@ body::-webkit-scrollbar {
 
 #moy-stars{
   font-size: 80px;
-  color: #ffa723;
+  color: var(--star);
 }
 
 #nb-avis{
