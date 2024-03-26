@@ -30,6 +30,23 @@
             <a href="">Telephone: 05.00.00.00.00</a>
         </div>
     </div>
+    <?php
+        if(isset($_POST['submitConnexion'])) {
+            $mail = $_POST['mail'];
+            $mdp = $_POST['mdp'];
+
+            $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '');
+            $sqlAdmin = $bdd->prepare('SELECT * FROM Compte WHERE mail = :mail AND mdp = :mdp AND admin = 1');
+            $sqlAdmin->execute(['mail' => $mail, 'mdp' => $mdp]);
+            $adminRow = $sqlAdmin->fetch(PDO::FETCH_ASSOC);
+
+            if($adminRow) {
+                $_SESSION['mail'] = $adminRow['mail'];
+                header("Location: admin.php");
+                exit();
+            } 
+        }
+    ?>
     
     <div class="menuAccueil" id="menuAccueil">
         <div class="menuAccueilContent">
