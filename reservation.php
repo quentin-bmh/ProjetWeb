@@ -2,17 +2,26 @@
 $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '');
 
 if(isset($_POST['submit'])) {
+   
+   
+    echo "<script>console.log('mail : ".$_POST['mail']."');</script>";
+    echo "<script>console.log('nom : ".$_POST['nom']."');</script>";
+    echo "<script>console.log('tel : ".$_POST['tel']."');</script>";
+    echo "<script>console.log('heure : ".$_POST['heure']."');</script>";
+    echo "<script>console.log('date : ".$_POST['date']."');</script>";
     try {
-        if(!empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['phone']) && !empty($_POST['nbrPers']) && !empty($_POST['hour']) && !empty($_POST['date'])) {
+        if(!empty($_POST['mail']) && !empty($_POST['nom']) && !empty($_POST['tel']) && !empty($_POST['nbPers']) && !empty($_POST['heure']) && !empty($_POST['date'])) {
+            $mail = $_POST['mail'];
+            $date = $_POST['date'];
+            $nbPers = $_POST['nbPers'];
+            $heure = $_POST['heure'];
+            
             $nom = $_POST['nom'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $nbrPers = $_POST['nbrPers'];
-            $hours = $_POST['hour'];
-            $days = $_POST['date'];
+            $tel = $_POST['tel'];
 
-            $sql = $bdd->prepare('INSERT INTO Reservation(mail, date, nbPers, heure) VALUES (:email, :day, :nbrPers, :hour)');
-            $sql->execute(['email' => $email, 'day' => $days, 'nbrPers' => $nbrPers, 'hour' => $hours]);
+
+            $sql = $bdd->prepare('INSERT INTO Reservation(mail, date, nbPers, heure) VALUES (:mail, :date, :nbPers, :heure)');
+            $sql->execute(['mail' => $mail, 'date' => $date, 'nbPers' => $nbPers, 'heure' => $heure]);
             
             echo "<script>window.location.href = 'reservation.php';</script>";
             //echo "<script>alert('Réservation effectuée avec succès !');</script>";
@@ -21,7 +30,7 @@ if(isset($_POST['submit'])) {
             /*
             $to = "montoulieu.quentin@gmail.com";
             $subject = "Nouvelle réservation";
-            $message = "Une nouvelle réservation a été effectuée.\nNom: $nom\nE-mail: $email\nTéléphone: $phone\nNombre de personnes: $nbrPers\nJour: $days\nHeure: $hours";
+            $message = "Une nouvelle réservation a été effectuée.\nNom: $nom\nE-mail: $email\nTéléphone: $phone\nNombre de personnes: $nbPers\nJour: $days\nHeure: $hours";
             $headers = "From: montoulieu.quentin@gmail.com";
 
             // Configuration SMTP pour Gmail avec connexion sécurisée TLS
@@ -84,7 +93,7 @@ if(isset($_POST['submit'])) {
                                     <form action="" method="post" onsubmit="return ValiderFormulaire()">
                                         <div class="form-row">
                                         <input type="date" id="date" name="date">
-                                            <select name="hour" id="hour">
+                                            <select name="heure" id="heure">
                                                 <option value="hour-select">Selectionnez une heure</option>
                                                 <option disabled="disabled">--------------</option>
                                                 <option disabled="disabled">Service midi:</option>
@@ -98,12 +107,12 @@ if(isset($_POST['submit'])) {
                                             </select>
                                         </div>
                                         <div class="form-row">
-                                            <input type="text" placeholder="Nom" id="name" name="nom" value="<?php echo $donnees['nom']; ?>" required>
-                                            <input type="text" placeholder="Téléphone" id="phone" name="phone" value="<?php echo $donnees['tel']; ?>" required>
-                                            <input type="email" placeholder="Mail" id="mail" name="email" value="<?php echo $_SESSION['mail']; ?>" disabled>
+                                            <input type="text" placeholder="Nom" id="nom" name="nom" value="<?php echo $donnees['nom']; ?>" required>
+                                            <input type="text" placeholder="Téléphone" id="tel" name="tel" value="<?php echo $donnees['tel']; ?>" required>
+                                            <input type="email" placeholder="Mail" id="mail" name="mail" value="<?php echo $_SESSION['mail']; ?>" readonly>
                                         </div>
                                         <div class="form-row">
-                                            <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbrPers" name="nbrPers">
+                                            <input type="number" placeholder="Nombre de personne?" min="1" max="10" id="nbPers" name="nbPers">
                                             <input type="submit" value="Réserver la table" name="submit">
                                         </div>
                                     </form>

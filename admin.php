@@ -9,6 +9,7 @@
     <script src="Script/admin.js"></script>
 </head>
 <body>
+    <?php include 'header.inc.php'; ?>
     <img id="logo-admin" src="Image/LogoRestau3.png" alt="">
     <div id="text-admin" class="font">Mode Administrateur</div>
     <table id="table-res">

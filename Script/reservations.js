@@ -8,18 +8,7 @@ function ValiderFormulaire() {
 
     var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (nom === '') {
-        alert("Veuillez renseigner votre nom.");
-        return false;
-    }
-    if (!regexEmail.test(email)) {
-        alert("Veuillez entrer une adresse e-mail valide.");
-        return false;
-    }
-    if (!/^0\d{9}$/.test(phone)) {
-        alert("Veuillez entrer un numéro de téléphone valide (10 chiffres, commençant par 0).");
-        return false;
-    }
+    /*
     if (nombre_personnes === '') {
         alert("Veuillez indiquer le nombre de personnes (minimum 1).");
         return false;
@@ -32,6 +21,6 @@ function ValiderFormulaire() {
         alert("Veuillez sélectionner un jour.");
         return false;
     }
-
+*/
     return true;
 }
