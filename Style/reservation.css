@@ -74,7 +74,6 @@ body {
     font-weight: 300;
 }
 
-
 input[type="email"]:disabled {
     background-color: inherit;
     border-bottom: none;
