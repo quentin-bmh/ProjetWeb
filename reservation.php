@@ -122,16 +122,21 @@ if(isset($_POST['submit'])) {
                     </div>
                     <div class='mesReservations'>
                         <?php
-                            $maTableStatement = $mysqlConnection->prepare("SELECT * FROM reservation WHERE mail=:mail");
-                            $maTableStatement->execute(["mail"=>$_SESSION['mail']]);
-                            $donnees = $maTableStatement->fetchAll();
-                            var_dump($donnees);
-                            foreach ($donnees as $resultat) {
-                                echo "<div class='réservation'>";
-                                echo "<div class='jour'>Jour: {$resultat['date']}</div>";
-                                echo "<div class='heure'>Heure: {$resultat['heure']}</div>";
-                                echo "<div class='nbPers'>nbPers: {$resultat['nbPers']}</div>";
-                                echo "</div>";
+                            $sql = $bdd->prepare('SELECT * FROM reservation AS a INNER JOIN compte AS c ON c.mail = a.mail');
+                            $sql->execute();
+                            $rep = $sql->fetchAll();
+                            //var_dump($rep);
+                            foreach($rep as $line){
+                                echo "<tr>";
+                                //echo "<tr data-id='".$line["id"].""."'>";
+                                echo "<td>".$line['date']."</td>";
+                                echo "<td>".$line['heure']."</td>";
+                                echo "<td>".$line['nbPers']." pers</td>";
+                                echo "<td>".$line['nom']."</td>";
+                                echo "<td>".$line['prenom']."</td>";
+                                echo "<td>".$line['mail']."</td>";
+                                echo "<td><a href='reservation.php?del=".$line["id"]."'>"."X"."</a></td>";
+                                echo "</tr>";
                             }
                         ?>
                     </div>
