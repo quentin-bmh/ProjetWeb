@@ -2,7 +2,6 @@
   --star:#ffae00;
 }
 
-#ffff00
 body{
   overflow-x: hidden;
 }
@@ -14,16 +13,20 @@ body {
   width: 100%;    
   background-size: cover;
   background-position: center;
-  background-image: url('../Image/reservation.jpeg');
+  /*background-image: url('../Image/reservation.jpeg');*/
 }
-.container_avis {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#background{
+  width:100%;
   height: 100vh;
+  object-fit: cover;
+  position:fixed;
+}
+#container-avis {
+  width:90%;
+  position: absolute;
+  top: 100px;
+  left: 5%;
+  /*background-color: red;*/
 }
 
 .avis{
@@ -31,7 +34,7 @@ body {
   backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px;
-  margin : 15px 0;
+  margin : 15px 15%;
   border : solid 2px black;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
@@ -49,16 +52,21 @@ body {
 }
 
 #recap{
-  width: 70%;
-  column-gap: 20px;
+  /*width: 70%;*/
+  width:100%;
+  /*column-gap: 20px;*/
   margin: auto;
   display: grid;
-  grid-template-columns: min-content auto;
+  grid-template-columns: 1fr 5fr;
+  /*
+  grid-template-columns: fit-content auto;
   grid-template-rows: min-content min-content;
+  */
 }
 
 #moy{
   font-size: 100px;
+  text-align: right;
 }
 
 #moy-stars{
@@ -67,8 +75,13 @@ body {
 }
 
 #nb-avis{
-  
+  text-align: right;
   font-size: 30px;
+}
+
+.rating input{
+  background-color: red;
+  display: none;
 }
 
 
@@ -121,10 +134,15 @@ input[type="submit"] {
 }
 */
 input {
+  background: #fdfdfddd;
+  backdrop-filter: blur(8px);
   width: 100%;
   padding: 4px;
   margin: 4px 0;
   box-shadow: #666;
+  border-radius: 20px;
+  font-size: 30px;
+  box-shadow: 0 0 10px black;
 }
 
 .rating:not(:checked) > input {

@@ -22,9 +22,9 @@
 
 <body>
     <?php include 'header.inc.php'; ?>
-
-    <div class="container_avis">
-    <div class="haut">
+    <img id="background" src="Image/reservation.jpeg" alt="">
+    <div id="container-avis">
+    <!--div class="haut"-->
         <div id="recap"> 
             <?php
                 $maTableStatement = $mysqlConnection->prepare('SELECT AVG(note) AS moyenne_notes FROM avis');
@@ -36,64 +36,36 @@
                 $resultatRequete = $maTableStatement->fetchAll();
                 $nombreDePrenoms = $resultatRequete[0]['count_prenom'];
                 
-                //echo "<p>La note moyenne est $moyenneNotes</p>";
                 echo "<div id='moy'>".round($moyenneNotes,1)."</div>";
                 echo "<div id='moy-stars'>".getStars(round($moyenneNotes))."</div>";
                 echo "<div id='nb-avis'>".$nombreDePrenoms." avis </div>";
-                /*
-                if ($moyenneNotes >= 0 && $moyenneNotes < 1) {
-                    $etoiles = "☆☆☆☆☆";
-                } elseif ($moyenneNotes >= 1 && $moyenneNotes < 2) {
-                    $etoiles = "★☆☆☆☆";
-                } elseif ($moyenneNotes >= 2 && $moyenneNotes < 3) {
-                    $etoiles = "★★☆☆☆";
-                } elseif ($moyenneNotes >= 3 && $moyenneNotes < 4) {
-                    $etoiles = "★★★☆☆";
-                } elseif ($moyenneNotes >= 4 && $moyenneNotes <= 5) {
-                    $etoiles = "★★★★☆";
-                } elseif ($moyenneNotes == 5) {
-                    $etoiles = "★★★★★";
-                } else {
-                    $etoiles = "Erreur : Note invalide";
-                }
-                echo "<p>$etoiles</p>";
-                */
             ?>
         </div>
         <div class="tri">
-        <?php
-            $tri = $_GET['tri'] ?? 'Bon Avis';
+            <?php
+                $tri = $_GET['tri'] ?? 'Bon Avis';
+                switch ($tri) {
+                    case 'bon':
+                        $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
+                        break;
+                    case 'mauvais':
+                        $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note ASC';
+                        break;
+                    case 'Ancien':
+                        $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
+                        break;
+                    case 'Récent':
+                        $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
+                        break;
+                    default:
+                        $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
+                        break;
+                }
 
-            switch ($tri) {
-                case 'bon':
-                    //$sql = 'SELECT * FROM avis ORDER BY note DESC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
-                    break;
-                case 'mauvais':
-                    //$sql = 'SELECT * FROM avis ORDER BY note ASC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note ASC';
-                    break;
-                case 'Ancien':
-                    //$sql = 'SELECT * FROM avis ORDER BY date ASC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date ASC';
-                    break;
-                case 'Récent':
-                    //$sql = 'SELECT * FROM avis ORDER BY date DESC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY date DESC';
-                    break;
-                default:
-                    //$sql = 'SELECT * FROM avis ORDER BY note DESC';
-                    $sql = 'SELECT * FROM avis AS a INNER JOIN compte AS c ON a.mail = c.mail ORDER BY note DESC';
-                    break;
-            }
-
-            $maTableStatement = $mysqlConnection->prepare($sql);
-            $maTableStatement->execute();
-            $donnees = $maTableStatement->fetchAll();
-
-            //$maTableStatement = $mysqlConnection->prepare('SELECT * FROM compte AS c INNER JOIN avis AS a ON c.mail== ');
-
-        ?>
+                $maTableStatement = $mysqlConnection->prepare($sql);
+                $maTableStatement->execute();
+                $donnees = $maTableStatement->fetchAll();
+            ?>
         </div>
         <div>
             <label for="tri">Trier par:</label>
@@ -130,7 +102,6 @@
                     <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
                 </div>
                 <div>
-                    <label for="rating">Votre note :</label><br>
                     <div class="stars" onclick="selectRating(event)"> 
                         <div class="rating">
                             <input value="5" name="rate" id="star5" type="radio" >
@@ -145,35 +116,34 @@
                             <label title="text" for="star1"></label>
                         </div>
                     </div>
-                    <input type="hidden" id="rating" name="rating" value="0">
+                    <input style="display:none" class="hidden" id="rating" name="rating" value="0">
                 </div>
                 <input type="submit" value="Envoyer l'avis">
             </form>
         </div>
-            <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rate']) && isset($_POST['reviewText'])) {
-                    $note = $_POST['rate'];
-                    $avis = $_POST['reviewText'];
-                    $mail = $_SESSION['mail'];
-                    /*
-                    $mail = $_SESSION['mail'];
-                    $sqlQuery= 'INSERT INTO avis (mail,note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
-                    $insertRequete->execute(['mail' => $mail,'note' => $note,'avis' => $avis]);
-                    */
-                    $sqlQuery= 'INSERT INTO avis (mail, note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
-                    $insertRequete = $mysqlConnection->prepare($sqlQuery);
-                    $insertRequete->execute([
-                        'mail' => $mail,
-                        'note' => $note,
-                        'avis' => $avis
-                    ]);
-                    echo "<script>window.location.href = 'avis.php';</script>";
-                }
-            ?>
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rate']) && isset($_POST['reviewText'])) {
+                $note = $_POST['rate'];
+                $avis = $_POST['reviewText'];
+                $mail = $_SESSION['mail'];
+                /*
+                $mail = $_SESSION['mail'];
+                $sqlQuery= 'INSERT INTO avis (mail,note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
+                $insertRequete->execute(['mail' => $mail,'note' => $note,'avis' => $avis]);
+                */
+                $sqlQuery= 'INSERT INTO avis (mail, note, avis, date) VALUES (:mail, :note, :avis, CURRENT_DATE())';
+                $insertRequete = $mysqlConnection->prepare($sqlQuery);
+                $insertRequete->execute([
+                    'mail' => $mail,
+                    'note' => $note,
+                    'avis' => $avis
+                ]);
+                echo "<script>window.location.href = 'avis.php';</script>";
+            }
+        ?>
             
         <div>
             <?php
-
                 function getStars($n){
                     $str = "";
                     for($i = 0 ; $i < 5 ; $i++){
@@ -185,19 +155,16 @@
                     }
                     return $str;
                 }
-                //var_dump($donnees);
                 foreach ($donnees as $resultat) {
-                    
                     echo "<div class='avis'>";
                     echo "<div class='commentaire font'>\"".$resultat['avis']."\"</div>";
                     echo "<div class='detail'>".$resultat['prenom']."  -  ".$resultat['date']."</div>";
                     echo "<div class='note'>".getStars($resultat['note'])."</div>";
                     echo "</div>";
                 }
-                
             ?>
         </div>
-        </div>
+    </div>
         
 </body>
 </html> 
