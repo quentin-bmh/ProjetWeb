@@ -31,6 +31,7 @@
         </div>
     </div>
     <?php
+    /*
         if(isset($_POST['submitConnexion'])) {
             $mail = $_POST['mail'];
             $mdp = $_POST['mdp'];
@@ -46,6 +47,7 @@
                 exit();
             } 
         }
+        */
     ?>
     
     <div class="menuAccueil" id="menuAccueil">
@@ -55,6 +57,17 @@
             <a href="reservation.php">Réservation</a>
             <a href="avis.php">Avis</a>
             
+            <?php
+                if(isset($_SESSION['mail'])) {
+                    $bdd = new PDO('mysql:host=localhost;dbname=projetWeb;charset=utf8', 'root', '');
+                    $sqlAdmin = $bdd->prepare('SELECT * FROM Compte WHERE mail = :mail');
+                    $sqlAdmin->execute(['mail' => $_SESSION['mail']]);
+                    $result = $sqlAdmin->fetch(PDO::FETCH_ASSOC);
+                    if($result['admin'] == 1){
+                        echo "<a href='admin.php'>Admin</a>";
+                    }
+                }
+            ?>
             <?php
             /*
             <a style="display:<?php
@@ -75,7 +88,16 @@
             ?>
         </div>
     </div>
-    <img id="connexion" src="Image/profilPicture.jpg" alt="" onclick="showProfil()">
+    <img 
+
+    <?php 
+    if(isset($_SESSION['mail'])) {
+        echo "style='border: solid 5px rgb(123, 13, 220)'";
+    }
+    ?>
+    
+    
+    id="connexion" src="Image/profilPicture.jpg" alt="" onclick="showProfil()">
     <div style='display:<?php
                     if(isset($_SESSION['mail'])) {  
                         echo 'block';

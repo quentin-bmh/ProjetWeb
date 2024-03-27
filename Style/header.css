@@ -368,10 +368,8 @@ header .profil{
 header #connexion{
   width: 60px;
   border-radius: 9999px;  
-  border: solid 5px rgb(123, 13, 220);
   position:absolute;
   left:calc(100% - 85px);
   top:calc(15vh / 2 - 60px / 2 - 20px);
   z-index: 2;
 }
-
