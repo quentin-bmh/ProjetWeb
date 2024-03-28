@@ -95,32 +95,29 @@
                 ?>
             " type="submit" id="ajouterAvis" value="Ajouter un Avis">
         </div>
-        <div>
             <form id="formulaireAvis" method="post" style="display:none" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div>
-                    <label for="reviewText">Votre avis :</label><br>
                     <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
                 </div>
                 <div>
                     <div class="stars" onclick="selectRating(event)"> 
                         <div class="rating">
                             <input value="5" name="rate" id="star5" type="radio" >
-                            <label title="text" for="star5"></label>
+                            <label title="parfait" for="star5"></label>
                             <input value="4" name="rate" id="star4" type="radio">
-                            <label title="text" for="star4"></label>
+                            <label title="très bien" for="star4"></label>
                             <input value="3" name="rate" id="star3" type="radio">
-                            <label title="text" for="star3"></label>
+                            <label title="bien" for="star3"></label>
                             <input value="2" name="rate" id="star2" type="radio">
-                            <label title="text" for="star2"></label>
+                            <label title="moyen" for="star2"></label>
                             <input value="1" name="rate" id="star1" type="radio" checked="">
-                            <label title="text" for="star1"></label>
+                            <label title="null" for="star1"></label>
                         </div>
                     </div>
                     <input style="display:none" class="hidden" id="rating" name="rating" value="0">
                 </div>
                 <input type="submit" value="Envoyer l'avis">
             </form>
-        </div>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rate']) && isset($_POST['reviewText'])) {
                 $note = $_POST['rate'];

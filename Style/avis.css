@@ -34,14 +34,18 @@ body {
   backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px;
-  margin : 15px 15%;
+  margin : 15px auto;
   border : solid 2px black;
   border-radius: 20px;
   box-shadow: 0 0 10px black;
+  width: calc(65% - 17px * 2);
 }
 
 .commentaire{
-  font-size: 30px;
+  width: 100%;
+  font-size: 40px;
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 .detail{
   font-size: 20px;
@@ -134,15 +138,30 @@ input[type="submit"] {
 }
 */
 input {
+  display: block;
   background: #fdfdfddd;
   backdrop-filter: blur(8px);
-  width: 100%;
+  width: 90%;
   padding: 4px;
-  margin: 4px 0;
+  margin: 4px auto;
   box-shadow: #666;
   border-radius: 20px;
   font-size: 30px;
   box-shadow: 0 0 10px black;
+}
+
+.stars{
+  background-color: red;
+  width: 100%;
+  height: fit-content;
+}
+
+.rating{
+  background-color: green;
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  font-size: 100px;
 }
 
 .rating:not(:checked) > input {
@@ -153,27 +172,51 @@ input {
 .rating:not(:checked) > label {
   float: right;
   cursor: pointer;
-  font-size: 30px;
   color: #666;
 }
 
 .rating:not(:checked) > label:before {
   content: '★';
 }
-
+/*
 .rating > input:checked + label:hover,
 .rating > input:checked + label:hover ~ label,
+*/
 .rating > input:checked ~ label:hover,
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
-  color: #e58e09;
+  color: #ffae00;
 }
-
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
-  color: #ff9e0b;
+  color: #ffae0088;
+  text-shadow: 0 0 25px #342300e8;
+}
+.rating > input:checked ~ label {
+  color: #ffae00;
+}
+.rating:hover > input:checked ~ label:not(.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label) {
+  color: #ffae0088;
 }
 
-.rating > input:checked ~ label {
-  color: #ffa723;
+#formulaireAvis{
+  padding: 25px 0;
+  width: 70%;
+  margin: auto;
+  box-shadow: 0 0 10px black;
+  background: #fdfdfd22;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+textarea{
+  display: block;
+  width: calc(95% - 20px * 2);
+  margin:auto;
+  resize: none;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 20px;
 }
