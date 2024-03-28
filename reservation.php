@@ -77,7 +77,7 @@ if(isset($_POST['submit'])) {
                     } else {
                         echo 'block';                        
                     }
-                ?>" type="submit" id="seConnecter" value="Se connecter pour pouvoir réserver" onclick="showProfil()" />
+                ?>" type="submit" id="seConnecter" value="Se connecter pour effectuer une réservation" onclick="showProfil()" />
                 </div>
                 <?php if(isset($_SESSION['mail'])) {
                     $maTableStatement = $mysqlConnection->prepare("SELECT * FROM compte WHERE mail=:mail");
